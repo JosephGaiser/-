@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bln8nv7h1vplh"]
+
+[ext_resource type="Texture2D" uid="uid://s331hgelql33" path="res://assets/Steam Deck/Vector/steamdeck_trackpad_outline.svg" id="1_xid4u"]
+
+[node name="wall" type="StaticBody2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_xid4u")

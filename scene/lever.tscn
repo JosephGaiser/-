@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://yu0xhyysih47"]
+
+[ext_resource type="Script" path="res://scene/Lever.gd" id="1_ju7v3"]
+[ext_resource type="Texture2D" uid="uid://cgbgnq08kjkc1" path="res://assets/Flairs/Vector/flair_disabled_line.svg" id="3_26d71"]
+
+[node name="Lever" type="Node2D"]
+script = ExtResource("1_ju7v3")
+
+[node name="Speed Slider" type="HSlider" parent="."]
+unique_name_in_owner = true
+offset_left = -72.0
+offset_top = 8.0
+offset_right = 72.0
+offset_bottom = 126.0
+max_value = 1.0
+step = 0.01
+
+[node name="Body" type="StaticBody2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Body"]
+rotation = 0.785397
+scale = Vector2(2.7, 2.7)
+texture = ExtResource("3_26d71")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Body"]
+position = Vector2(-80, -8)
+scale = Vector2(1.6, 1.6)
+polygon = PackedVector2Array(-5, 0, 95, 0, 105, -5, 105, 0, 105, 10, -5, 10)
+
+[connection signal="drag_ended" from="Speed Slider" to="." method="_on_speed_slider_drag_ended"]
+[connection signal="value_changed" from="Speed Slider" to="." method="_on_speed_slider_value_changed"]

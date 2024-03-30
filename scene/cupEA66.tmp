@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqtw3x8oxhcdx"]
+
+[ext_resource type="Script" path="res://scene/cup.gd" id="1_epgpn"]
+[ext_resource type="AudioStream" uid="uid://bbxequitib574" path="res://addons/kenney impact sounds/impact_mining_003.ogg" id="2_mbkpy"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2k2nm"]
+
+[node name="Cup" type="StaticBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_2k2nm")
+script = ExtResource("1_epgpn")
+
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="Capture" type="AudioStreamPlayer2D" parent="Sounds"]
+unique_name_in_owner = true
+stream = ExtResource("2_mbkpy")
+
+[node name="Interior" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 24)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interior"]
+position = Vector2(-16, 0)
+polygon = PackedVector2Array(-8, -16, -8, 24, 40, 24, 40, -16)
+
+[node name="Walls" type="CollisionPolygon2D" parent="."]
+unique_name_in_owner = true
+polygon = PackedVector2Array(-32, 56, 32, 56, 32, 0, 16, 0, 16, 40, -16, 40, -16, 0, -32, 0)
+
+[connection signal="body_entered" from="Interior" to="." method="_on_interior_body_entered"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3c3y7cko4pgf"]
+
+[ext_resource type="Texture2D" uid="uid://dm0ypbqtikxti" path="res://assets/Generic/Vector/generic_button_circle.svg" id="1_o7flw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gtg1g"]
+radius = 22.8571
+
+[node name="Pin" type="StaticBody2D"]
+scale = Vector2(0.35, 0.35)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1, 1)
+shape = SubResource("CircleShape2D_gtg1g")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 2)
+scale = Vector2(1, 1)
+texture = ExtResource("1_o7flw")
+offset = Vector2(0.07, -1.96)

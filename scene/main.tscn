@@ -1,0 +1,186 @@
+[gd_scene load_steps=7 format=3 uid="uid://dfw6wqw7gqp1a"]
+
+[ext_resource type="Script" path="res://scene/main.gd" id="1_21x2s"]
+[ext_resource type="PackedScene" uid="uid://hnvyunxvbv1o" path="res://scene/ball.tscn" id="1_sygm0"]
+[ext_resource type="PackedScene" uid="uid://b3c3y7cko4pgf" path="res://scene/pin.tscn" id="2_bck6a"]
+[ext_resource type="PackedScene" uid="uid://bs27aobfwpcds" path="res://scene/stage.tscn" id="3_ewtbe"]
+[ext_resource type="PackedScene" uid="uid://dqtw3x8oxhcdx" path="res://scene/cup.tscn" id="3_mgn8n"]
+[ext_resource type="PackedScene" uid="uid://yu0xhyysih47" path="res://scene/lever.tscn" id="6_vnb56"]
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_21x2s")
+ball_scene = ExtResource("1_sygm0")
+
+[node name="Stage" type="Node2D" parent="."]
+
+[node name="Background" type="ColorRect" parent="Stage"]
+offset_right = 1920.0
+offset_bottom = 1088.0
+color = Color(0.00392157, 0, 0.027451, 1)
+
+[node name="Pins" type="Node2D" parent="Stage"]
+position = Vector2(-8, 0)
+
+[node name="Pin" parent="Stage/Pins" instance=ExtResource("2_bck6a")]
+position = Vector2(1088, 448)
+
+[node name="Pin2" parent="Stage/Pins" instance=ExtResource("2_bck6a")]
+position = Vector2(1024, 448)
+
+[node name="Pin3" parent="Stage/Pins" instance=ExtResource("2_bck6a")]
+position = Vector2(960, 448)
+
+[node name="Pin4" parent="Stage/Pins" instance=ExtResource("2_bck6a")]
+position = Vector2(896, 448)
+
+[node name="Pin5" parent="Stage/Pins" instance=ExtResource("2_bck6a")]
+position = Vector2(832, 448)
+
+[node name="Pin6" parent="Stage/Pins" instance=ExtResource("2_bck6a")]
+position = Vector2(1120, 512)
+
+[node name="Pin7" parent="Stage/Pins" instance=ExtResource("2_bck6a")]
+position = Vector2(1056, 512)
+
+[node name="Pin8" parent="Stage/Pins" instance=ExtResource("2_bck6a")]
+position = Vector2(992, 512)
+
+[node name="Pin9" parent="Stage/Pins" instance=ExtResource("2_bck6a")]
+position = Vector2(928, 512)
+
+[node name="Pin10" parent="Stage/Pins" instance=ExtResource("2_bck6a")]
+position = Vector2(864, 512)
+
+[node name="Pin11" parent="Stage/Pins" instance=ExtResource("2_bck6a")]
+position = Vector2(1088, 576)
+
+[node name="Pin12" parent="Stage/Pins" instance=ExtResource("2_bck6a")]
+position = Vector2(1024, 576)
+
+[node name="Pin13" parent="Stage/Pins" instance=ExtResource("2_bck6a")]
+position = Vector2(960, 576)
+
+[node name="Pin14" parent="Stage/Pins" instance=ExtResource("2_bck6a")]
+position = Vector2(896, 576)
+
+[node name="Pin15" parent="Stage/Pins" instance=ExtResource("2_bck6a")]
+position = Vector2(832, 576)
+
+[node name="Pin16" parent="Stage/Pins" instance=ExtResource("2_bck6a")]
+position = Vector2(1120, 640)
+
+[node name="Pin17" parent="Stage/Pins" instance=ExtResource("2_bck6a")]
+position = Vector2(1056, 640)
+
+[node name="Pin18" parent="Stage/Pins" instance=ExtResource("2_bck6a")]
+position = Vector2(992, 640)
+
+[node name="Pin19" parent="Stage/Pins" instance=ExtResource("2_bck6a")]
+position = Vector2(928, 640)
+
+[node name="Pin20" parent="Stage/Pins" instance=ExtResource("2_bck6a")]
+position = Vector2(864, 640)
+
+[node name="Pin21" parent="Stage/Pins" instance=ExtResource("2_bck6a")]
+position = Vector2(768, 448)
+
+[node name="Pin22" parent="Stage/Pins" instance=ExtResource("2_bck6a")]
+position = Vector2(800, 512)
+
+[node name="Pin23" parent="Stage/Pins" instance=ExtResource("2_bck6a")]
+position = Vector2(768, 576)
+
+[node name="Pin24" parent="Stage/Pins" instance=ExtResource("2_bck6a")]
+position = Vector2(800, 640)
+
+[node name="Pin25" parent="Stage/Pins" instance=ExtResource("2_bck6a")]
+position = Vector2(704, 448)
+
+[node name="Pin26" parent="Stage/Pins" instance=ExtResource("2_bck6a")]
+position = Vector2(736, 512)
+
+[node name="Pin27" parent="Stage/Pins" instance=ExtResource("2_bck6a")]
+position = Vector2(704, 576)
+
+[node name="Pin28" parent="Stage/Pins" instance=ExtResource("2_bck6a")]
+position = Vector2(736, 640)
+
+[node name="Panel" type="Node2D" parent="Stage"]
+
+[node name="Label" type="Label" parent="Stage/Panel"]
+offset_left = 704.0
+offset_top = 232.0
+offset_right = 744.0
+offset_bottom = 255.0
+text = "7"
+
+[node name="Label2" type="Label" parent="Stage/Panel"]
+offset_left = 725.0
+offset_top = 232.0
+offset_right = 765.0
+offset_bottom = 255.0
+text = "7"
+
+[node name="Label3" type="Label" parent="Stage/Panel"]
+offset_left = 744.0
+offset_top = 232.0
+offset_right = 784.0
+offset_bottom = 255.0
+text = "7"
+
+[node name="Walls" type="Node2D" parent="Stage"]
+
+[node name="StageRight" parent="Stage/Walls" node_paths=PackedStringArray("collision_polygon_2d") instance=ExtResource("3_ewtbe")]
+position = Vector2(24, 0)
+collision_polygon_2d = NodePath("CollisionPolygon2D")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Stage/Walls/StageRight"]
+polygon = PackedVector2Array(1144, 712, 1144, 421.284, 1126.52, 400, 1088, 400, 1088, 416, 1120, 416, 1128, 424, 1128, 704, 1088, 744, 1024, 768, 1024, 784, 1096, 760)
+
+[node name="StageTop" parent="Stage/Walls" node_paths=PackedStringArray("collision_polygon_2d") instance=ExtResource("3_ewtbe")]
+position = Vector2(24, 0)
+collision_polygon_2d = NodePath("CollisionPolygon2D2")
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Stage/Walls/StageTop"]
+position = Vector2(64, 0)
+polygon = PackedVector2Array(1168, 688, 1144, 688, 1144, 176, 552, 176, 552, 704, 600, 752, 664, 784, 664, 768, 608, 736, 568, 696, 568, 254.713, 576, 208, 615.663, 192, 1064, 192, 1112, 208, 1128, 256, 1128, 704, 1168, 704)
+
+[node name="Bottom" parent="Stage/Walls" node_paths=PackedStringArray("collision_polygon_2d") instance=ExtResource("3_ewtbe")]
+position = Vector2(24, 0)
+collision_polygon_2d = NodePath("CollisionPolygon2D")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Stage/Walls/Bottom"]
+position = Vector2(-304, 752)
+polygon = PackedVector2Array(1032, 80, 1328, 80, 1328, 16, 1312, 24, 1312, 64, 1048, 64, 1048, 24, 1032, 16)
+
+[node name="Feed" parent="Stage/Walls" node_paths=PackedStringArray("collision_polygon_2d") instance=ExtResource("3_ewtbe")]
+position = Vector2(24, 0)
+collision_polygon_2d = NodePath("CollisionPolygon2D")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Stage/Walls/Feed"]
+position = Vector2(64, 616)
+polygon = PackedVector2Array(1472, 88, 1384, 216, 1064, 216, 1064, 88, 1080, 88, 1080, 200, 1376, 200, 1456, 88)
+
+[node name="Inventory" parent="Stage/Walls" node_paths=PackedStringArray("collision_polygon_2d") instance=ExtResource("3_ewtbe")]
+position = Vector2(24, 0)
+collision_polygon_2d = NodePath("CollisionPolygon2D")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Stage/Walls/Inventory"]
+position = Vector2(128, 0)
+polygon = PackedVector2Array(1408, 704, 1408, 72, 1384, 40, 1128, 40, 1104, 72, 1104, 688, 1104, 704, 1136, 736, 1200, 760, 1280, 768, 1280, 752, 1200, 744, 1144, 720, 1120, 696, 1120, 80, 1136, 56, 1376, 56, 1392, 80, 1392, 704)
+
+[node name="Cups" type="Node2D" parent="Stage"]
+
+[node name="cup" parent="Stage/Cups" instance=ExtResource("3_mgn8n")]
+position = Vector2(792, 676)
+
+[node name="cup2" parent="Stage/Cups" instance=ExtResource("3_mgn8n")]
+position = Vector2(904, 704)
+
+[node name="cup3" parent="Stage/Cups" instance=ExtResource("3_mgn8n")]
+position = Vector2(1012, 676)
+
+[node name="Lever" parent="." instance=ExtResource("6_vnb56")]
+position = Vector2(1160, 824)
+
+[node name="Balls" type="Node2D" parent="."]

@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://hnvyunxvbv1o"]
+
+[ext_resource type="Script" path="res://scene/ball.gd" id="1_02aqe"]
+[ext_resource type="Texture2D" uid="uid://dm0ypbqtikxti" path="res://assets/Generic/Vector/generic_button_circle.svg" id="1_jamuf"]
+[ext_resource type="Texture2D" uid="uid://rfggc16beepr" path="res://assets/Generic/Double/generic_button_circle.png" id="3_nvx6f"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_da7qh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ullqy"]
+radius = 25.02
+
+[sub_resource type="Curve" id="Curve_d1bdk"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ytd25"]
+curve = SubResource("Curve_d1bdk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_goncd"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+inherit_velocity_ratio = 0.649
+angular_velocity_max = 202.65
+gravity = Vector3(0, 98, 0)
+scale_curve = SubResource("CurveTexture_ytd25")
+sub_emitter_keep_velocity = true
+
+[node name="Ball" type="RigidBody2D" groups=["balls"]]
+physics_material_override = SubResource("PhysicsMaterial_da7qh")
+script = ExtResource("1_02aqe")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+scale = Vector2(125, 125)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_ullqy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_jamuf")
+
+[node name="captured_effect" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+scale = Vector2(0.25, 0.25)
+emitting = false
+amount = 5
+sub_emitter = NodePath(".")
+process_material = SubResource("ParticleProcessMaterial_goncd")
+texture = ExtResource("3_nvx6f")
