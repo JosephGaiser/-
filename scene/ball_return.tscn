@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ciffvs6f7r7b6"]
+
+[ext_resource type="Texture2D" uid="uid://bybftm4ra17a3" path="res://assets/Generic/Vector/generic_button_circle_outline.svg" id="1_32kc4"]
+[ext_resource type="Script" path="res://scene/ball_return.gd" id="1_372mg"]
+
+[node name="BallReturn" type="Node2D"]
+script = ExtResource("1_372mg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_32kc4")

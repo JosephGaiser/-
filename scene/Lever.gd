@@ -11,20 +11,20 @@ var activated: bool = false
 
 
 func _ready():
-    if counter_clockwise:
-        direction = -1
-    else:
-        direction = 1
+	if counter_clockwise:
+		direction = -1
+	else:
+		direction = 1
 
 
 func _process(delta):
-    if activated:
-        body.rotate(speed * direction)
+	if activated:
+		body.rotate(speed * direction)
 
 
 func _on_speed_slider_value_changed(value):
-    if value <= 0:
-        activated = false
-    else:
-        activated = true
-    speed = base_speed * value
+	if value <= 0:
+		activated = false
+	else:
+		activated = true
+	speed = base_speed * value

@@ -5,7 +5,8 @@ class_name main
 
 
 func _input(event):
-    if event.is_action_pressed("spawn_ball"):
-        var ball = ball_scene.instantiate()
-        ball.position = event.position
-        add_child(ball)
+	if event.is_action_pressed("spawn_ball"):
+		print(event.position)	
+		var ball = ball_scene.instantiate()
+		ball.position = event.position
+		add_child(ball)
