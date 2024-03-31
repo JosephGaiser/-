@@ -1,10 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://dfw6wqw7gqp1a"]
+[gd_scene load_steps=15 format=3 uid="uid://dfw6wqw7gqp1a"]
 
 [ext_resource type="Script" path="res://scene/main.gd" id="1_21x2s"]
 [ext_resource type="PackedScene" uid="uid://hnvyunxvbv1o" path="res://scene/ball.tscn" id="1_sygm0"]
 [ext_resource type="PackedScene" uid="uid://b3c3y7cko4pgf" path="res://scene/pin.tscn" id="2_bck6a"]
 [ext_resource type="PackedScene" uid="uid://bs27aobfwpcds" path="res://scene/stage.tscn" id="3_ewtbe"]
+[ext_resource type="Script" path="res://scene/Playfield.gd" id="3_i13m1"]
 [ext_resource type="PackedScene" uid="uid://dqtw3x8oxhcdx" path="res://scene/cup.tscn" id="3_mgn8n"]
+[ext_resource type="Script" path="res://scene/Control.gd" id="4_t72f6"]
+[ext_resource type="Script" path="res://scene/DisplayPanel.gd" id="4_yl11d"]
 [ext_resource type="PackedScene" uid="uid://ctjx83t6p3aw7" path="res://scene/out_of_bounds.tscn" id="6_5atrc"]
 [ext_resource type="AudioStream" uid="uid://q4i4hlqptjd1" path="res://addons/kenney music jingles/Hit jingles/jingles_hit_4.ogg" id="6_o5bsv"]
 [ext_resource type="PackedScene" uid="uid://yu0xhyysih47" path="res://scene/lever.tscn" id="6_vnb56"]
@@ -17,13 +20,32 @@ script = ExtResource("1_21x2s")
 ball_scene = ExtResource("1_sygm0")
 
 [node name="Stage" type="Node2D" parent="."]
+script = ExtResource("3_i13m1")
 
-[node name="Background" type="ColorRect" parent="Stage"]
+[node name="Control" type="Control" parent="Stage"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_t72f6")
+
+[node name="Background" type="ColorRect" parent="Stage/Control"]
+layout_mode = 0
 offset_left = -8.0
 offset_top = 8.0
 offset_right = 1912.0
 offset_bottom = 1096.0
 color = Color(0.00392157, 0, 0.027451, 1)
+
+[node name="Inventory" type="Label" parent="Stage/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1296.0
+offset_top = 144.0
+offset_right = 1336.0
+offset_bottom = 167.0
+scale = Vector2(2.5, 2.5)
+text = "0000"
 
 [node name="Pins" type="Node2D" parent="Stage"]
 
@@ -111,29 +133,6 @@ position = Vector2(560, 624)
 [node name="Pin28" parent="Stage/Pins" instance=ExtResource("2_bck6a")]
 position = Vector2(592, 688)
 
-[node name="Panel" type="Node2D" parent="Stage"]
-
-[node name="Label" type="Label" parent="Stage/Panel"]
-offset_left = 752.0
-offset_top = 232.0
-offset_right = 792.0
-offset_bottom = 255.0
-text = "7"
-
-[node name="Label2" type="Label" parent="Stage/Panel"]
-offset_left = 773.0
-offset_top = 232.0
-offset_right = 813.0
-offset_bottom = 255.0
-text = "7"
-
-[node name="Label3" type="Label" parent="Stage/Panel"]
-offset_left = 792.0
-offset_top = 232.0
-offset_right = 832.0
-offset_bottom = 255.0
-text = "7"
-
 [node name="Walls" type="Node2D" parent="Stage"]
 position = Vector2(-64, 96)
 
@@ -172,6 +171,39 @@ collision_polygon_2d = NodePath("CollisionPolygon2D")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Stage/Walls/Inventory"]
 polygon = PackedVector2Array(1408, 704, 1408, 72, 1384, 40, 1128, 40, 1104, 72, 1104, 694, 1080, 694, 1064, 710, 1072, 734, 1080, 750, 1096, 758, 1120, 766, 1152, 766, 1200, 766, 1280, 766, 1280, 750, 1200, 744, 1144, 720, 1120, 696, 1120, 80, 1136, 56, 1376, 56, 1392, 80, 1392, 704)
 
+[node name="DisplayPanel" type="Node2D" parent="Stage"]
+unique_name_in_owner = true
+position = Vector2(827, 176)
+scale = Vector2(5.5, 5.5)
+script = ExtResource("4_yl11d")
+
+[node name="Label1" type="Label" parent="Stage/DisplayPanel"]
+unique_name_in_owner = true
+offset_left = -32.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 15.0
+text = "7"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="Stage/DisplayPanel"]
+unique_name_in_owner = true
+offset_left = -11.0
+offset_top = -8.0
+offset_right = 29.0
+offset_bottom = 15.0
+text = "7"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label3" type="Label" parent="Stage/DisplayPanel"]
+unique_name_in_owner = true
+offset_left = 8.0
+offset_top = -8.0
+offset_right = 48.0
+offset_bottom = 15.0
+text = "7"
+metadata/_edit_use_anchors_ = true
+
 [node name="Cups" type="Node2D" parent="Stage"]
 
 [node name="capture_sound" type="AudioStreamPlayer2D" parent="Stage/Cups"]
@@ -183,8 +215,10 @@ position = Vector2(768, 792)
 stream = ExtResource("6_o5bsv")
 
 [node name="crit" parent="Stage/Cups" node_paths=PackedStringArray("capture") instance=ExtResource("3_mgn8n")]
+unique_name_in_owner = true
 position = Vector2(763, 792)
 capture = NodePath("../crit_capture_sound")
+is_crit = true
 
 [node name="capture" parent="Stage/Cups" node_paths=PackedStringArray("capture") instance=ExtResource("3_mgn8n")]
 position = Vector2(888, 760)
@@ -195,8 +229,8 @@ position = Vector2(656, 760)
 capture = NodePath("../capture_sound")
 
 [node name="OutOfBounds" parent="Stage" node_paths=PackedStringArray("destory_sound") instance=ExtResource("6_5atrc")]
-position = Vector2(779, 928)
-scale = Vector2(4, 1)
+position = Vector2(773, 911.63)
+scale = Vector2(2.765, 0.1)
 destory_sound = NodePath("Destroy")
 
 [node name="Destroy" type="AudioStreamPlayer2D" parent="Stage/OutOfBounds"]
@@ -209,10 +243,13 @@ position = Vector2(1032, 912)
 base_speed = 1.0
 
 [node name="BallReturn" parent="." instance=ExtResource("8_84y76")]
+unique_name_in_owner = true
 position = Vector2(603, 104)
 inventory = 250
 base_spawn_delay = 0.5
 
+[connection signal="jackpot_hit" from="Stage/DisplayPanel" to="BallReturn" method="_on_display_panel_jackpot_hit"]
 [connection signal="ball_captured" from="Stage/Cups/crit" to="BallReturn" method="_on_crit_ball_captured"]
+[connection signal="crit_captured" from="Stage/Cups/crit" to="Stage/DisplayPanel" method="_on_crit_crit_captured"]
 [connection signal="ball_captured" from="Stage/Cups/capture" to="BallReturn" method="_on_capture_ball_captured"]
 [connection signal="ball_captured" from="Stage/Cups/capture2" to="BallReturn" method="_on_capture_2_ball_captured"]

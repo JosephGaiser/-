@@ -2,6 +2,7 @@ extends RigidBody2D
 class_name Ball
 
 @onready var captured_effect: GPUParticles2D = %captured_effect
+@onready var lost_effect: GPUParticles2D = %lost_effect
 @onready var collision: AudioStreamPlayer2D = %Collision
 
 static var concurrent_sfx_playing: int = 0
@@ -18,6 +19,8 @@ func captured():
 	queue_free() # Free the ball instance
 	await effect_instance.finished
 
+func lost():
+	lost_effect.emitting = true
 
 func _on_body_entered(body) -> void:
 	var impact_level: float = linear_velocity.length()

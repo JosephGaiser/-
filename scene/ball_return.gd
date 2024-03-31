@@ -55,3 +55,7 @@ func _on_crit_ball_captured():
 
 func _on_capture_2_ball_captured():
 	capture(2)
+
+
+func _on_display_panel_jackpot_hit():
+	capture(100)

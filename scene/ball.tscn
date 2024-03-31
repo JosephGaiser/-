@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://hnvyunxvbv1o"]
+[gd_scene load_steps=13 format=3 uid="uid://hnvyunxvbv1o"]
 
 [ext_resource type="Script" path="res://scene/ball.gd" id="1_02aqe"]
 [ext_resource type="Texture2D" uid="uid://dm0ypbqtikxti" path="res://assets/Generic/Vector/generic_button_circle.svg" id="1_jamuf"]
 [ext_resource type="AudioStream" uid="uid://c0dpg8j03cmp5" path="res://addons/kenney impact sounds/impact_metal_medium_000.ogg" id="2_bqh8j"]
 [ext_resource type="Texture2D" uid="uid://c28beassonh8k" path="res://assets/Flairs/Vector/flair_cross.svg" id="4_jkdrc"]
+[ext_resource type="Texture2D" uid="uid://drcdcqehkjmro" path="res://assets/Steam Deck/Vector/steamdeck_dpad_all.svg" id="5_iqbdc"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_da7qh"]
 friction = 0.2
@@ -32,7 +33,7 @@ curve = SubResource("Curve_2t5st")
 lifetime_randomness = 0.75
 particle_flag_disable_z = true
 emission_shape = 2
-emission_sphere_radius = 14.41
+emission_sphere_radius = 16.73
 radial_accel_curve = SubResource("CurveTexture_0k456")
 damping_max = 5.0
 scale_min = 0.08
@@ -68,12 +69,27 @@ texture = ExtResource("1_jamuf")
 [node name="captured_effect" type="GPUParticles2D" parent="."]
 unique_name_in_owner = true
 texture_filter = 1
+emitting = false
 amount = 15
 amount_ratio = 0.66
 sub_emitter = NodePath(".")
 process_material = SubResource("ParticleProcessMaterial_goncd")
 texture = ExtResource("4_jkdrc")
+lifetime = 2.2
+one_shot = true
+randomness = 0.39
+
+[node name="lost_effect" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+emitting = false
+amount = 15
+amount_ratio = 0.66
+sub_emitter = NodePath(".")
+process_material = SubResource("ParticleProcessMaterial_goncd")
+texture = ExtResource("5_iqbdc")
 lifetime = 1.3
+one_shot = true
 randomness = 0.39
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

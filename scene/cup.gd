@@ -2,7 +2,9 @@ extends StaticBody2D
 class_name Cup
 
 signal ball_captured
+signal crit_captured
 @export var capture: AudioStreamPlayer2D
+@export var is_crit: bool = false
 
 
 @onready var walls: CollisionPolygon2D = %Walls
@@ -26,6 +28,8 @@ func _on_interior_body_entered(body):
 		if body.has_method("captured"):
 			capture.play(1.0)
 			body.captured()
+			if is_crit:
+				crit_captured.emit()
 			ball_captured.emit()
 		else:
 			body.queue_free()
