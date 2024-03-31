@@ -1,10 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://ciffvs6f7r7b6"]
+[gd_scene load_steps=4 format=3 uid="uid://ciffvs6f7r7b6"]
 
 [ext_resource type="Texture2D" uid="uid://bybftm4ra17a3" path="res://assets/Generic/Vector/generic_button_circle_outline.svg" id="1_32kc4"]
 [ext_resource type="Script" path="res://scene/ball_return.gd" id="1_372mg"]
+[ext_resource type="PackedScene" uid="uid://hnvyunxvbv1o" path="res://scene/ball.tscn" id="2_el8jo"]
 
 [node name="BallReturn" type="Node2D"]
 script = ExtResource("1_372mg")
+ball_scene = ExtResource("2_el8jo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("1_32kc4")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-24, 0, -16, -16, 0, -24, 16, -16, 24, 0, 16, 16, 0, 24, -16, 16)

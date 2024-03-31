@@ -1,9 +1,12 @@
 extends StaticBody2D
 class_name Cup
 
+signal ball_captured
+@export var capture: AudioStreamPlayer2D
+
+
 @onready var walls: CollisionPolygon2D = %Walls
 @onready var interior: Area2D = %Interior
-@onready var capture: AudioStreamPlayer2D = %Capture
 
 
 func _ready():
@@ -23,5 +26,6 @@ func _on_interior_body_entered(body):
 		if body.has_method("captured"):
 			capture.play(1.0)
 			body.captured()
+			ball_captured.emit()
 		else:
 			body.queue_free()

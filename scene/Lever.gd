@@ -17,7 +17,7 @@ func _ready():
 		direction = 1
 
 
-func _process(delta):
+func _process(_delta):
 	if activated:
 		body.rotate(speed * direction)
 

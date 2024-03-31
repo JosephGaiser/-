@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dfw6wqw7gqp1a"]
+[gd_scene load_steps=12 format=3 uid="uid://dfw6wqw7gqp1a"]
 
 [ext_resource type="Script" path="res://scene/main.gd" id="1_21x2s"]
 [ext_resource type="PackedScene" uid="uid://hnvyunxvbv1o" path="res://scene/ball.tscn" id="1_sygm0"]
@@ -6,8 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://bs27aobfwpcds" path="res://scene/stage.tscn" id="3_ewtbe"]
 [ext_resource type="PackedScene" uid="uid://dqtw3x8oxhcdx" path="res://scene/cup.tscn" id="3_mgn8n"]
 [ext_resource type="PackedScene" uid="uid://ctjx83t6p3aw7" path="res://scene/out_of_bounds.tscn" id="6_5atrc"]
+[ext_resource type="AudioStream" uid="uid://q4i4hlqptjd1" path="res://addons/kenney music jingles/Hit jingles/jingles_hit_4.ogg" id="6_o5bsv"]
 [ext_resource type="PackedScene" uid="uid://yu0xhyysih47" path="res://scene/lever.tscn" id="6_vnb56"]
+[ext_resource type="AudioStream" uid="uid://cqhstnlnu4frc" path="res://addons/kenney music jingles/Hit jingles/jingles_hit_0.ogg" id="6_vsyig"]
 [ext_resource type="PackedScene" uid="uid://ciffvs6f7r7b6" path="res://scene/ball_return.tscn" id="8_84y76"]
+[ext_resource type="AudioStream" uid="uid://b7xuh4vuv212x" path="res://addons/kenney music jingles/Hit jingles/jingles_hit_8.ogg" id="9_ye5if"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_21x2s")
@@ -146,7 +149,7 @@ position = Vector2(24, 0)
 collision_polygon_2d = NodePath("CollisionPolygon2D2")
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Stage/Walls/StageTop"]
-polygon = PackedVector2Array(1168, 696, 1144, 688, 1144, 224, 1144, 200, 1136, 184, 1112, 176, 1088, 176, 592, 176, 560, 184, 552, 208, 552, 704, 600, 752, 664, 784, 664, 768, 608, 736, 568, 696, 568, 254.713, 576, 208, 615.663, 192, 1064, 192, 1096, 200, 1112, 208, 1120, 224, 1128, 256, 1128, 704, 1200, 728)
+polygon = PackedVector2Array(1144, 688, 1144, 224, 1144, 200, 1136, 184, 1112, 176, 1088, 176, 592, 176, 560, 184, 552, 208, 552, 704, 600, 752, 664, 784, 664, 768, 608, 736, 568, 696, 568, 254.713, 576, 208, 615.663, 192, 1064, 192, 1096, 200, 1112, 208, 1120, 224, 1128, 256, 1128, 704)
 
 [node name="Bottom" parent="Stage/Walls" node_paths=PackedStringArray("collision_polygon_2d") instance=ExtResource("3_ewtbe")]
 position = Vector2(-344, 752)
@@ -167,27 +170,49 @@ position = Vector2(88, -6)
 collision_polygon_2d = NodePath("CollisionPolygon2D")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Stage/Walls/Inventory"]
-polygon = PackedVector2Array(1408, 704, 1408, 72, 1384, 40, 1128, 40, 1104, 72, 1104, 688, 1104, 704, 1136, 734, 1200, 760, 1280, 768, 1280, 752, 1200, 744, 1144, 720, 1120, 696, 1120, 80, 1136, 56, 1376, 56, 1392, 80, 1392, 704)
+polygon = PackedVector2Array(1408, 704, 1408, 72, 1384, 40, 1128, 40, 1104, 72, 1104, 694, 1080, 694, 1064, 710, 1072, 734, 1080, 750, 1096, 758, 1120, 766, 1152, 766, 1200, 766, 1280, 766, 1280, 750, 1200, 744, 1144, 720, 1120, 696, 1120, 80, 1136, 56, 1376, 56, 1392, 80, 1392, 704)
 
 [node name="Cups" type="Node2D" parent="Stage"]
 
-[node name="Cup" parent="Stage/Cups" instance=ExtResource("3_mgn8n")]
+[node name="capture_sound" type="AudioStreamPlayer2D" parent="Stage/Cups"]
 position = Vector2(768, 792)
+stream = ExtResource("6_vsyig")
 
-[node name="Cup2" parent="Stage/Cups" instance=ExtResource("3_mgn8n")]
-position = Vector2(667, 760)
+[node name="crit_capture_sound" type="AudioStreamPlayer2D" parent="Stage/Cups"]
+position = Vector2(768, 792)
+stream = ExtResource("6_o5bsv")
 
-[node name="Cup3" parent="Stage/Cups" instance=ExtResource("3_mgn8n")]
-position = Vector2(864, 760)
+[node name="crit" parent="Stage/Cups" node_paths=PackedStringArray("capture") instance=ExtResource("3_mgn8n")]
+position = Vector2(763, 792)
+capture = NodePath("../crit_capture_sound")
+
+[node name="capture" parent="Stage/Cups" node_paths=PackedStringArray("capture") instance=ExtResource("3_mgn8n")]
+position = Vector2(888, 760)
+capture = NodePath("../capture_sound")
+
+[node name="capture2" parent="Stage/Cups" node_paths=PackedStringArray("capture") instance=ExtResource("3_mgn8n")]
+position = Vector2(656, 760)
+capture = NodePath("../capture_sound")
+
+[node name="OutOfBounds" parent="Stage" node_paths=PackedStringArray("destory_sound") instance=ExtResource("6_5atrc")]
+position = Vector2(779, 928)
+scale = Vector2(4, 1)
+destory_sound = NodePath("Destroy")
+
+[node name="Destroy" type="AudioStreamPlayer2D" parent="Stage/OutOfBounds"]
+position = Vector2(-44, -824)
+scale = Vector2(0.25, 1)
+stream = ExtResource("9_ye5if")
 
 [node name="Lever" parent="Stage" instance=ExtResource("6_vnb56")]
 position = Vector2(1032, 912)
 base_speed = 1.0
 
-[node name="OutOfBounds" parent="Stage" instance=ExtResource("6_5atrc")]
-position = Vector2(779, 928)
-scale = Vector2(4, 1)
+[node name="BallReturn" parent="." instance=ExtResource("8_84y76")]
+position = Vector2(603, 104)
+inventory = 250
+base_spawn_delay = 0.5
 
-[node name="BallReturn" parent="Stage" instance=ExtResource("8_84y76")]
-position = Vector2(1280, 192)
-ball_scene = ExtResource("1_sygm0")
+[connection signal="ball_captured" from="Stage/Cups/crit" to="BallReturn" method="_on_crit_ball_captured"]
+[connection signal="ball_captured" from="Stage/Cups/capture" to="BallReturn" method="_on_capture_ball_captured"]
+[connection signal="ball_captured" from="Stage/Cups/capture2" to="BallReturn" method="_on_capture_2_ball_captured"]

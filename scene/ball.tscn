@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://hnvyunxvbv1o"]
+[gd_scene load_steps=12 format=3 uid="uid://hnvyunxvbv1o"]
 
 [ext_resource type="Script" path="res://scene/ball.gd" id="1_02aqe"]
 [ext_resource type="Texture2D" uid="uid://dm0ypbqtikxti" path="res://assets/Generic/Vector/generic_button_circle.svg" id="1_jamuf"]
-[ext_resource type="AudioStream" uid="uid://ca2p8v614g3iu" path="res://addons/kenney impact sounds/impact_soft_medium_001.ogg" id="2_y5b4c"]
-[ext_resource type="Texture2D" uid="uid://rfggc16beepr" path="res://assets/Generic/Double/generic_button_circle.png" id="3_nvx6f"]
+[ext_resource type="AudioStream" uid="uid://c0dpg8j03cmp5" path="res://addons/kenney impact sounds/impact_metal_medium_000.ogg" id="2_bqh8j"]
+[ext_resource type="Texture2D" uid="uid://c28beassonh8k" path="res://assets/Flairs/Vector/flair_cross.svg" id="4_jkdrc"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_da7qh"]
 friction = 0.2
@@ -12,35 +12,46 @@ bounce = 0.75
 [sub_resource type="CircleShape2D" id="CircleShape2D_ullqy"]
 radius = 25.02
 
-[sub_resource type="Curve" id="Curve_d1bdk"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_lebxb"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, -200), 0.0, 0.0, 0, 0, Vector2(1, 200), 560.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_ytd25"]
-curve = SubResource("Curve_d1bdk")
+[sub_resource type="CurveTexture" id="CurveTexture_0k456"]
+curve = SubResource("Curve_lebxb")
+
+[sub_resource type="Curve" id="Curve_2t5st"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ume87"]
+curve = SubResource("Curve_2t5st")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_goncd"]
-lifetime_randomness = 1.0
+lifetime_randomness = 0.75
 particle_flag_disable_z = true
-angle_min = -180.0
-angle_max = 180.0
-inherit_velocity_ratio = 0.649
-angular_velocity_max = 202.65
-gravity = Vector3(0, 98, 0)
-scale_curve = SubResource("CurveTexture_ytd25")
-sub_emitter_keep_velocity = true
+emission_shape = 2
+emission_sphere_radius = 14.41
+radial_accel_curve = SubResource("CurveTexture_0k456")
+damping_max = 5.0
+scale_min = 0.08
+scale_max = 0.4
+scale_curve = SubResource("CurveTexture_ume87")
 
 [node name="Ball" type="RigidBody2D" groups=["balls"]]
 physics_material_override = SubResource("PhysicsMaterial_da7qh")
 max_contacts_reported = 5
 contact_monitor = true
 script = ExtResource("1_02aqe")
+collision_threshold = 160.0
 
 [node name="Sounds" type="Node2D" parent="."]
 
 [node name="Collision" type="AudioStreamPlayer2D" parent="Sounds"]
 unique_name_in_owner = true
-stream = ExtResource("2_y5b4c")
+stream = ExtResource("2_bqh8j")
+volume_db = -20.95
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 scale = Vector2(125, 125)
@@ -57,12 +68,12 @@ texture = ExtResource("1_jamuf")
 [node name="captured_effect" type="GPUParticles2D" parent="."]
 unique_name_in_owner = true
 texture_filter = 1
-scale = Vector2(0.25, 0.25)
-emitting = false
-amount = 5
+amount = 15
+amount_ratio = 0.66
 sub_emitter = NodePath(".")
 process_material = SubResource("ParticleProcessMaterial_goncd")
-texture = ExtResource("3_nvx6f")
-one_shot = true
+texture = ExtResource("4_jkdrc")
+lifetime = 1.3
+randomness = 0.39
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

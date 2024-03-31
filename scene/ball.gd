@@ -5,7 +5,9 @@ class_name Ball
 @onready var collision: AudioStreamPlayer2D = %Collision
 
 static var concurrent_sfx_playing: int = 0
-static var max_concurrent_sfx: int     = 15
+static var max_concurrent_sfx: int     = 3
+
+@export var collision_threshold: float = 600
 
 
 func captured():
@@ -17,7 +19,10 @@ func captured():
 	await effect_instance.finished
 
 
-func _on_body_entered(body):
+func _on_body_entered(body) -> void:
+	var impact_level: float = linear_velocity.length()
+	if impact_level < collision_threshold:
+		return
 	if concurrent_sfx_playing <= max_concurrent_sfx:
 		concurrent_sfx_playing +=1
 		collision.play(0)
