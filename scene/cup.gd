@@ -5,6 +5,7 @@ signal ball_captured
 signal crit_captured
 @export var capture: AudioStreamPlayer2D
 @export var is_crit: bool = false
+@export var damage: int = 10
 
 
 @onready var walls: CollisionPolygon2D = %Walls

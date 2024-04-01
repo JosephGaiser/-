@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 signal jackpot_hit
 @onready var wheel_1: Label = $Label1

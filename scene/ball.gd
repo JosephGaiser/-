@@ -5,11 +5,10 @@ class_name Ball
 @onready var lost_effect: GPUParticles2D = %lost_effect
 @onready var collision: AudioStreamPlayer2D = %Collision
 
-static var concurrent_sfx_playing: int = 0
-static var max_concurrent_sfx: int     = 3
-
 @export var collision_threshold: float = 600
 
+static var concurrent_sfx_playing: int = 0
+static var max_concurrent_sfx: int     = 3
 
 func captured():
 	var effect_instance: GPUParticles2D = captured_effect.duplicate()
