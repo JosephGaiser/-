@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://scene/DisplayPanel.gd" id="5_d128a"]
 [ext_resource type="PackedScene" uid="uid://ctjx83t6p3aw7" path="res://scene/out_of_bounds.tscn" id="6_5atrc"]
 [ext_resource type="AudioStream" uid="uid://q4i4hlqptjd1" path="res://addons/kenney music jingles/Hit jingles/jingles_hit_4.ogg" id="6_o5bsv"]
-[ext_resource type="PackedScene" uid="uid://yu0xhyysih47" path="res://scene/lever.tscn" id="6_vnb56"]
+[ext_resource type="PackedScene" uid="uid://yu0xhyysih47" path="res://scene/Lever.tscn" id="6_vnb56"]
 [ext_resource type="AudioStream" uid="uid://cqhstnlnu4frc" path="res://addons/kenney music jingles/Hit jingles/jingles_hit_0.ogg" id="6_vsyig"]
 [ext_resource type="PackedScene" uid="uid://ciffvs6f7r7b6" path="res://scene/ball_return.tscn" id="8_84y76"]
 [ext_resource type="AudioStream" uid="uid://b7xuh4vuv212x" path="res://addons/kenney music jingles/Hit jingles/jingles_hit_8.ogg" id="9_ye5if"]
@@ -256,7 +256,7 @@ position = Vector2(1040, 912)
 [node name="BallReturn" parent="Playfield" instance=ExtResource("8_84y76")]
 unique_name_in_owner = true
 position = Vector2(603, 104)
-inventory = 20
+inventory = 5
 
 [connection signal="jackpot_hit" from="Playfield/UI/Slots" to="Playfield/UI" method="_on_slots_jackpot_hit"]
 [connection signal="jackpot_hit" from="Playfield/UI/Slots" to="Playfield/BallReturn" method="_on_slots_jackpot_hit"]
