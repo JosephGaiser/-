@@ -5,40 +5,34 @@ extends Node2D
 @export var base_spawn_delay: float = .2
 
 var spawn_delay_timer: Timer
-var active_spawn_delay: float = base_spawn_delay
-var balls_to_spawn: int       = 0
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	spawn_delay_timer = Timer.new()
-	spawn_delay_timer.wait_time = active_spawn_delay
+	spawn_delay_timer.wait_time = base_spawn_delay
 	spawn_delay_timer.autostart = true
 	add_child(spawn_delay_timer)
 	spawn_delay_timer.connect("timeout", _on_spawn_delay_timeout)
 
 
 func _on_spawn_delay_timeout():
-	if balls_to_spawn > 0:
-		balls_to_spawn -= 1
-	if balls_to_spawn <= 0:
-		balls_to_spawn = 0
-		active_spawn_delay = base_spawn_delay  # Reset spawn delay
-
-	spawn_delay_timer.wait_time = active_spawn_delay # Update timer delay
 	if inventory > 0:
 		spawn_ball()
 
 
 func spawn_ball():
-	var ball = ball_scene.instantiate()
-	ball.position = self.position
-	add_child(ball)
-	inventory -= 1
+	if inventory > 0:
+		var ball = ball_scene.instantiate()
+		ball.position = self.position
+		add_child(ball)
+		inventory -= 1
 
 
 func quick_spawn(count: int):
+	inventory += count
 	for i in range(count):
+		await get_tree().create_timer(.1).timeout
 		spawn_ball()
 
 

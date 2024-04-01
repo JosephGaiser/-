@@ -31,10 +31,9 @@ script = ExtResource("4_t72f6")
 
 [node name="Background" type="ColorRect" parent="Stage/Control"]
 layout_mode = 0
-offset_left = -8.0
-offset_top = 8.0
-offset_right = 1912.0
-offset_bottom = 1096.0
+offset_top = 24.0
+offset_right = 1920.0
+offset_bottom = 1112.0
 color = Color(0.00392157, 0, 0.027451, 1)
 
 [node name="Inventory" type="Label" parent="Stage/Control"]
@@ -162,14 +161,14 @@ position = Vector2(24, 608)
 collision_polygon_2d = NodePath("CollisionPolygon2D")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Stage/Walls/Feed"]
-polygon = PackedVector2Array(1472, 88, 1384, 216, 1136, 216, 1104, 208, 1080, 192, 1072, 168, 1064, 120, 1080, 104, 1088, 144, 1096, 176, 1112, 192, 1136, 200, 1144, 200, 1376, 200, 1456, 88)
+polygon = PackedVector2Array(1472, 96, 1448, 128, 1408, 144, 1376, 152, 1336, 176, 1296, 192, 1216, 208, 1136, 216, 1104, 216, 1064, 216, 1064, 200, 1064, 120, 1080, 104, 1080, 144, 1088.46, 173.605, 1096, 200, 1112, 200, 1144, 200, 1192, 192, 1248, 176, 1296, 160, 1336, 144, 1368, 128, 1408, 120, 1432, 104, 1456, 80, 1472, 80)
 
 [node name="Inventory" parent="Stage/Walls" node_paths=PackedStringArray("collision_polygon_2d") instance=ExtResource("3_ewtbe")]
 position = Vector2(88, -6)
 collision_polygon_2d = NodePath("CollisionPolygon2D")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Stage/Walls/Inventory"]
-polygon = PackedVector2Array(1408, 704, 1408, 72, 1384, 40, 1128, 40, 1104, 72, 1104, 694, 1080, 694, 1064, 710, 1072, 734, 1080, 750, 1096, 758, 1120, 766, 1152, 766, 1200, 766, 1280, 766, 1280, 750, 1200, 744, 1144, 720, 1120, 696, 1120, 80, 1136, 56, 1376, 56, 1392, 80, 1392, 704)
+polygon = PackedVector2Array(1408, 704, 1408, 72, 1384, 40, 1128, 40, 1104, 72, 1104, 694, 1080, 694, 1064, 710, 1064, 734, 1072, 758, 1088, 774, 1120, 774, 1160, 766, 1192, 758, 1216, 750, 1240, 734, 1200, 744, 1144, 720, 1120, 696, 1120, 80, 1136, 56, 1376, 56, 1392, 80, 1392, 704)
 
 [node name="DisplayPanel" type="Node2D" parent="Stage"]
 unique_name_in_owner = true
@@ -239,14 +238,20 @@ scale = Vector2(0.25, 1)
 stream = ExtResource("9_ye5if")
 
 [node name="Lever" parent="Stage" instance=ExtResource("6_vnb56")]
-position = Vector2(1032, 912)
+position = Vector2(1040, 912)
 base_speed = 1.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Stage/Lever"]
+position = Vector2(-56, 6)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Stage/Lever/StaticBody2D"]
+polygon = PackedVector2Array(56, -110, 56, -398, 40, -422, 72, -446, 104, -470, 104, -406, 104, -110)
+one_way_collision = true
 
 [node name="BallReturn" parent="." instance=ExtResource("8_84y76")]
 unique_name_in_owner = true
 position = Vector2(603, 104)
-inventory = 250
-base_spawn_delay = 0.5
+inventory = 20
 
 [connection signal="jackpot_hit" from="Stage/DisplayPanel" to="BallReturn" method="_on_display_panel_jackpot_hit"]
 [connection signal="ball_captured" from="Stage/Cups/crit" to="BallReturn" method="_on_crit_ball_captured"]
