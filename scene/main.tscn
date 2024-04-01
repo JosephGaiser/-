@@ -252,7 +252,6 @@ stream = ExtResource("9_ye5if")
 
 [node name="Lever" parent="Playfield" instance=ExtResource("6_vnb56")]
 position = Vector2(1040, 912)
-base_speed = 1.0
 
 [node name="BallReturn" parent="Playfield" instance=ExtResource("8_84y76")]
 unique_name_in_owner = true

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://yu0xhyysih47"]
 
-[ext_resource type="Script" path="res://scene/Lever.gd" id="1_ju7v3"]
+[ext_resource type="Script" path="res://lever.gd" id="1_ju7v3"]
 [ext_resource type="Texture2D" uid="uid://dtc80m7g8j6bm" path="res://assets/Steam Deck/Vector/steamdeck_button_x_outline.svg" id="2_p8o1y"]
 
 [node name="Lever" type="Node2D"]
@@ -21,11 +21,11 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_p8o1y")
 
 [node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(0, -48, 40, -48, 40, 0, 0, 0)
 
 [connection signal="drag_ended" from="Speed Slider" to="." method="_on_speed_slider_drag_ended"]
 [connection signal="value_changed" from="Speed Slider" to="." method="_on_speed_slider_value_changed"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
