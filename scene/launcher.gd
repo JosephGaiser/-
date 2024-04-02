@@ -5,6 +5,7 @@ extends Node2D
 @export var min_angle: float = -90.0  # Minimum angle in degrees
 @export var max_angle: float = 90.0  # Maximum angle in degrees
 @export var line_length: float = 100.0  # Length of the line representing the angle
+@export var strenth: float = 1000
 
 var direction: int
 var speed: float = 0
@@ -14,9 +15,11 @@ var activated: bool = false
 @onready var area_2d: Area2D = %Area2D
 @onready var spinner_sprite: Sprite2D = %SpinnerSprite
 @onready var angle_sprite: Sprite2D = %AngleSprite
+@onready var speed_slider = %"Speed Slider"
 
 
 func _ready():
+	speed_slider.value = .25
 	if counter_clockwise:
 		direction = -1
 	else:
@@ -35,11 +38,8 @@ func hit_body(body):
 	if body.is_in_group("balls"):
 		body = body as RigidBody2D
 		var force_direction: Vector2 = Vector2(cos(angle), sin(angle))
-		var force: Vector2 = force_direction * -3000 * speed
+		var force: Vector2 = force_direction * -strenth * speed
 		print("Force: ", force)
-		print("Angle: ", angle)
-		print("force_direction: ", force_direction)
-		print("speed: ", speed)
 		body.apply_central_impulse(force)
 
 

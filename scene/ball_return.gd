@@ -4,6 +4,8 @@ extends Node2D
 @export var inventory: int = 100
 @export var base_spawn_delay: float = .2
 
+@onready var area_2d: Area2D = %Area2D
+
 var spawn_delay_timer: Timer
 
 
@@ -21,11 +23,13 @@ func _on_spawn_delay_timeout():
 		spawn_ball()
 
 
-func spawn_ball():
+func spawn_ball() -> void:
+	if area_2d.has_overlapping_bodies():
+		return # prevents overfilling hopper
 	if inventory > 0:
 		var ball = ball_scene.instantiate()
 		ball.position = self.position
-		add_child(ball)
+		get_tree().root.add_child(ball)
 		inventory -= 1
 
 

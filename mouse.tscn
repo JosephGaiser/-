@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7sash61jawkf"]
+
+[ext_resource type="Script" path="res://scene/mouse.gd" id="1_jn0ru"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5dc15"]
+
+[node name="Mouse" type="Node2D"]
+script = ExtResource("1_jn0ru")
+
+[node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(2.5, 2.5)
+shape = SubResource("CircleShape2D_5dc15")
