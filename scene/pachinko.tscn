@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dfw6wqw7gqp1a"]
+[gd_scene load_steps=18 format=3 uid="uid://dfw6wqw7gqp1a"]
 
 [ext_resource type="Script" path="res://scene/pachinko.gd" id="1_q5b7l"]
 [ext_resource type="PackedScene" uid="uid://hnvyunxvbv1o" path="res://scene/ball.tscn" id="2_jkr4v"]
@@ -15,12 +15,10 @@
 [ext_resource type="AudioStream" uid="uid://brurjtngojn5u" path="res://addons/kenney music jingles/8-Bit jingles/jingles_nes_10.ogg" id="12_aaqkm"]
 [ext_resource type="PackedScene" uid="uid://yu0xhyysih47" path="res://scene/launcher.tscn" id="13_6yej0"]
 [ext_resource type="PackedScene" uid="uid://ciffvs6f7r7b6" path="res://scene/ball_return.tscn" id="14_i2v4r"]
+[ext_resource type="PackedScene" uid="uid://jxed73vr2yq7" path="res://flipper.tscn" id="15_stgoi"]
 
-[sub_resource type="Curve2D" id="Curve2D_yewx1"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, -8, 30.2567, 13.9891, -30.2567, -13.9891, -160, -24, 0, 0, 0, 0, -176, -224, 0, 0, 0, 0, -176, -344)
-}
-point_count = 4
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3l3jn"]
+friction = 0.1
 
 [node name="Pachinko" type="Node2D"]
 script = ExtResource("1_q5b7l")
@@ -39,7 +37,8 @@ script = ExtResource("4_eymai")
 
 [node name="Background" type="ColorRect" parent="Playfield/PlayfieldUI"]
 layout_mode = 0
-offset_right = 1920.0
+offset_left = -8.0
+offset_right = 1912.0
 offset_bottom = 1088.0
 color = Color(0.00392157, 0, 0.027451, 1)
 
@@ -89,9 +88,9 @@ text = "0000"
 [node name="stage_health" type="ProgressBar" parent="Playfield/PlayfieldUI"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 448.0
+offset_left = 472.0
 offset_top = 288.0
-offset_right = 488.0
+offset_right = 490.0
 offset_bottom = 328.0
 scale = Vector2(1.1, 13)
 tooltip_text = "enemy health
@@ -215,17 +214,18 @@ position = Vector2(-64, 96)
 
 [node name="StageTop" parent="Playfield/Walls" node_paths=PackedStringArray("collision_polygon_2d") instance=ExtResource("7_fvofa")]
 position = Vector2(24, 0)
+physics_material_override = SubResource("PhysicsMaterial_3l3jn")
 collision_polygon_2d = NodePath("CollisionPolygon2D2")
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Playfield/Walls/StageTop"]
-polygon = PackedVector2Array(1144, 683.345, 1144, 224, 1144, 200, 1136, 184, 1112, 176, 1088, 176, 592, 176, 560, 184, 552, 208, 552, 704, 664, 784, 664, 832, 680, 832, 960, 832, 960, 776, 984, 760, 1056, 720, 1056, 416, 1064, 416, 1072, 720, 1080, 744, 1104, 760, 1128.35, 768, 1200, 768, 1200, 752, 1172, 752, 1148, 751, 1135, 747, 1117, 740, 1104, 732, 1097, 726, 1089, 712, 1083, 696, 1080, 680, 1080, 656, 1080, 544, 1080, 416, 1072, 392, 1056, 384, 1040, 384, 1040, 712, 968, 752, 944, 768, 944, 816, 680, 816, 680, 776, 568, 696, 568, 344, 568, 304, 576, 264, 592, 240, 616, 224, 656, 216, 728, 208, 896, 208, 960, 216, 1024, 232, 1064, 256, 1088, 280, 1104, 312, 1112, 352, 1112, 407.996, 1112, 672, 1114, 683, 1120, 694, 1128, 704, 1142, 714, 1160, 720, 1200, 720, 1200, 704, 1176, 704, 1160, 696)
+polygon = PackedVector2Array(1152, 680, 1151.79, 668.134, 1144, 224, 1144, 200, 1136, 184, 1112, 176, 1088, 176, 592, 176, 560, 184, 552, 208, 552, 704, 664, 784, 664, 832, 680, 832, 960, 832, 960, 776, 984, 760, 1051, 726, 1074, 749, 1101, 763, 1134, 773, 1157, 778, 1178, 782, 1199, 784, 1202, 760, 1186, 759, 1167, 756, 1148, 751, 1135, 747, 1117, 740, 1104, 732, 1097, 726, 1089, 712, 1083, 696, 1080, 680, 1079, 656, 1080, 544, 1081, 459, 1083, 422, 1072, 392, 1056, 384, 1040, 384, 1040, 712, 968, 752, 944, 768, 944, 816, 680, 816, 680, 776, 568, 696, 568, 344, 568, 304, 576, 264, 592, 240, 616, 224, 656, 216, 728, 208, 896, 208, 960, 216, 1024, 232, 1064, 256, 1088, 280, 1104, 312, 1112, 352, 1112, 407.996, 1129, 659, 1132, 678, 1138, 690, 1150, 702, 1170, 712, 1185, 717, 1200, 720, 1200, 704, 1176, 696, 1160, 688)
 
 [node name="Hopper" parent="Playfield/Walls" node_paths=PackedStringArray("collision_polygon_2d") instance=ExtResource("7_fvofa")]
 position = Vector2(24, 608)
 collision_polygon_2d = NodePath("CollisionPolygon2D")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Playfield/Walls/Hopper"]
-polygon = PackedVector2Array(1424, 96, 1424, -408, 1416, -424, 1408, -432, 1316.21, -438.556, 1274.78, -438.484, 1184, -432, 1176, -424, 1168, -408, 1168, -80, 1232, 8, 1272, 48, 1306.43, 59.475, 1312, 72, 1304, 80, 1272, 96, 1256, 96, 1200, 96, 1200, 112, 1272, 112, 1304, 104, 1336, 88, 1352, 72, 1352, 56, 1336, 40, 1280, 24, 1240, -16, 1208, -56, 1184, -104, 1184, -408, 1286.82, -422.689, 1303.77, -422.889, 1408, -408, 1408, 80, 1400, 96, 1376, 112, 1344, 128, 1304, 144, 1200, 144, 1200, 160, 1336, 160, 1383.8, 160, 1400, 152, 1416, 136, 1424, 124.398)
+polygon = PackedVector2Array(1424, 96, 1424, -408, 1416, -424, 1408, -432, 1316.21, -438.556, 1274.78, -438.484, 1184, -432, 1176, -424, 1168, -408, 1168, -80, 1232, 8, 1272, 48, 1306.43, 59.475, 1312, 72, 1304, 80, 1272, 96, 1256, 96, 1200, 96, 1200, 112, 1272, 112, 1293, 110, 1309, 104, 1336, 88, 1352, 72, 1352, 56, 1336, 40, 1280, 24, 1240, -16, 1208, -56, 1184, -104, 1184, -408, 1286.82, -422.689, 1303.77, -422.889, 1408, -408, 1408, 80, 1403, 90, 1396, 97, 1376, 112, 1347, 128, 1325, 138, 1312, 142, 1295, 146, 1275, 149, 1247, 152, 1231, 153, 1202, 152, 1199, 176, 1214, 176, 1242, 175, 1277, 173, 1306, 170, 1335, 167, 1365, 163, 1384, 158, 1400, 152, 1410, 144, 1416, 136, 1422, 124, 1424, 112)
 
 [node name="Cups" type="Node2D" parent="Playfield"]
 
@@ -237,19 +237,16 @@ stream = ExtResource("8_mt3s6")
 position = Vector2(768, 792)
 stream = ExtResource("8_g4gvp")
 
-[node name="crit" parent="Playfield/Cups" node_paths=PackedStringArray("capture") instance=ExtResource("10_8cfso")]
+[node name="crit" parent="Playfield/Cups" instance=ExtResource("10_8cfso")]
 unique_name_in_owner = true
 position = Vector2(768, 792)
-capture = NodePath("../crit_capture_sound")
 is_crit = true
 
-[node name="capture" parent="Playfield/Cups" node_paths=PackedStringArray("capture") instance=ExtResource("10_8cfso")]
+[node name="capture" parent="Playfield/Cups" instance=ExtResource("10_8cfso")]
 position = Vector2(888, 760)
-capture = NodePath("../capture_sound")
 
-[node name="capture2" parent="Playfield/Cups" node_paths=PackedStringArray("capture") instance=ExtResource("10_8cfso")]
+[node name="capture2" parent="Playfield/Cups" instance=ExtResource("10_8cfso")]
 position = Vector2(656, 760)
-capture = NodePath("../capture_sound")
 
 [node name="OutOfBounds" parent="Playfield" node_paths=PackedStringArray("destory_sound") instance=ExtResource("11_lukya")]
 position = Vector2(773, 912)
@@ -262,18 +259,17 @@ scale = Vector2(0.25, 1)
 stream = ExtResource("12_aaqkm")
 
 [node name="Launcher" parent="Playfield" instance=ExtResource("13_6yej0")]
-position = Vector2(1232, 834)
+position = Vector2(1238, 838)
 strenth = 750.0
-
-[node name="Path2D" type="Path2D" parent="Playfield/Launcher"]
-position = Vector2(0, 6)
-curve = SubResource("Curve2D_yewx1")
 
 [node name="BallReturn" parent="Playfield" instance=ExtResource("14_i2v4r")]
 unique_name_in_owner = true
 position = Vector2(1256, 336)
 inventory = 0
 base_spawn_delay = 0.1
+
+[node name="Flipper" parent="Playfield" instance=ExtResource("15_stgoi")]
+position = Vector2(1011, 467)
 
 [node name="Mouse" parent="." instance=ExtResource("3_sqab6")]
 unique_name_in_owner = true

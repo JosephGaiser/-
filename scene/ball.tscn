@@ -1,9 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://hnvyunxvbv1o"]
+[gd_scene load_steps=15 format=3 uid="uid://hnvyunxvbv1o"]
 
 [ext_resource type="Script" path="res://scene/ball.gd" id="1_02aqe"]
 [ext_resource type="Texture2D" uid="uid://dm0ypbqtikxti" path="res://assets/Generic/Vector/generic_button_circle.svg" id="1_jamuf"]
-[ext_resource type="AudioStream" uid="uid://c0dpg8j03cmp5" path="res://addons/kenney impact sounds/impact_metal_medium_000.ogg" id="2_bqh8j"]
+[ext_resource type="AudioStream" uid="uid://cxs6vdl66q3cs" path="res://addons/kenney impact sounds/impact_soft_heavy_000.ogg" id="2_dyuyy"]
+[ext_resource type="AudioStream" uid="uid://dmi777ta57lcs" path="res://addons/kenney impact sounds/impact_wood_light_000.ogg" id="3_dvtsq"]
 [ext_resource type="Texture2D" uid="uid://c28beassonh8k" path="res://assets/Flairs/Vector/flair_cross.svg" id="4_jkdrc"]
+[ext_resource type="AudioStream" uid="uid://cq4i1fbqidupg" path="res://addons/kenney impact sounds/impact_bell_heavy_003.ogg" id="4_pt86a"]
 [ext_resource type="Texture2D" uid="uid://drcdcqehkjmro" path="res://assets/Steam Deck/Vector/steamdeck_dpad_all.svg" id="5_iqbdc"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_da7qh"]
@@ -46,14 +48,10 @@ physics_material_override = SubResource("PhysicsMaterial_da7qh")
 max_contacts_reported = 5
 contact_monitor = true
 script = ExtResource("1_02aqe")
-collision_threshold = 160.0
-
-[node name="Sounds" type="Node2D" parent="."]
-
-[node name="Collision" type="AudioStreamPlayer2D" parent="Sounds"]
-unique_name_in_owner = true
-stream = ExtResource("2_bqh8j")
-volume_db = -20.95
+collision_sound = ExtResource("2_dyuyy")
+capture_sound = ExtResource("3_dvtsq")
+crit_capture_sound = ExtResource("4_pt86a")
+collision_threshold = 200.0
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 scale = Vector2(125, 125)

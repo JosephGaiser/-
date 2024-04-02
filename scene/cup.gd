@@ -3,7 +3,6 @@ extends StaticBody2D
 
 signal ball_captured
 signal crit_captured
-@export var capture: AudioStreamPlayer2D
 @export var is_crit: bool = false
 @export var damage: int = 10
 
@@ -26,10 +25,10 @@ func _draw():
 func _on_interior_body_entered(body):
 	if body.is_in_group("balls"):
 		if body.has_method("captured"):
-			capture.play(1.0)
-			body.captured()
+			body.captured(is_crit)
 			if is_crit:
 				crit_captured.emit()
-			ball_captured.emit()
+			else:
+				ball_captured.emit()
 		else:
 			body.queue_free()

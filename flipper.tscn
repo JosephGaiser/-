@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://jxed73vr2yq7"]
+
+[ext_resource type="Texture2D" uid="uid://c1ac3h7m2llq8" path="res://assets/Generic/Double/generic_button_pressed.png" id="1_cvulb"]
+[ext_resource type="Texture2D" uid="uid://bbst5us3lisnf" path="res://assets/Flairs/Double/flair_disabled_line.png" id="2_j105b"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1yqx1"]
+radius = 22.3607
+
+[node name="Flipper" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+scale = Vector2(0.4, 0.4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_1yqx1")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_cvulb")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+position = Vector2(34, 0)
+rotation = 0.785398
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_j105b")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RigidBody2D"]
+polygon = PackedVector2Array(3, -4, 66, -4, 69, 0, 66, 4, 3, 4, 0, 0)
+
+[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="."]
+rotation = -2.33001
+node_a = NodePath("../StaticBody2D")
+node_b = NodePath("../RigidBody2D")
+disable_collision = false
+length = 1.0
