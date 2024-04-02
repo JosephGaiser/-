@@ -1,20 +1,20 @@
 extends Control
 
 signal jackpot_hit
-@onready var wheel_1: Label = $Label1
-@onready var wheel_2: Label = $Label2
-@onready var wheel_3: Label = $Label3
+@export var spin_duration: float = 2.0
 
 # Increase the frequency of "1" to increase its chance of being selected
 var wheel_1_values: Array[Variant] = ["1", "1", "1", "2", "3", "4", "5"]
 var wheel_2_values: Array[Variant] = ["1", "1", "1", "2", "3", "4", "5"]
 var wheel_3_values: Array[Variant] = ["1", "1", "1", "2", "3", "4", "5"]
-var wheel_1_spinning: bool         = false
-var wheel_2_spinning: bool         = false
-var wheel_3_spinning: bool         = false
-var spin_timer: Timer              = Timer.new()
+var wheel_1_spinning: bool = false
+var wheel_2_spinning: bool = false
+var wheel_3_spinning: bool = false
+var spin_timer: Timer = Timer.new()
 
-@export var spin_duration: float = 2.0
+@onready var wheel_1: Label = $Label1
+@onready var wheel_2: Label = $Label2
+@onready var wheel_3: Label = $Label3
 
 
 func _ready():
@@ -39,7 +39,6 @@ func start_spin():
 	wheel_2_spinning = true
 	wheel_3_spinning = true
 
-
 	# Stop wheel 1
 	await get_tree().create_timer(spin_duration / 3).timeout
 	wheel_1_spinning = false
@@ -51,7 +50,7 @@ func start_spin():
 	# Stop wheel 3
 	await get_tree().create_timer(spin_duration).timeout
 	wheel_3_spinning = false
-	
+
 	stop_spin()
 	check_jackpot()
 

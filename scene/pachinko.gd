@@ -1,5 +1,5 @@
+class_name Pachinko
 extends Node2D
-class_name main
 
 @export var ball_scene: PackedScene
 

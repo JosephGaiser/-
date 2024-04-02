@@ -3,17 +3,17 @@ extends Node2D
 @export var base_speed: float = 1.0
 @export var counter_clockwise: bool = true
 @export var min_angle: float = -90.0  # Minimum angle in degrees
-@export var max_angle: float = 90.0   # Maximum angle in degrees
+@export var max_angle: float = 90.0  # Maximum angle in degrees
 @export var line_length: float = 100.0  # Length of the line representing the angle
 
-@onready var area_2d: Area2D = %Area2D
-@onready var spinner_sprite: Sprite2D = %"Spinner Sprite"
-@onready var angle_sprite: Sprite2D = %"Angle Sprite"
-
 var direction: int
-var speed: float    = 0
-var angle: float    = 0
+var speed: float = 0
+var angle: float = 0
 var activated: bool = false
+
+@onready var area_2d: Area2D = %Area2D
+@onready var spinner_sprite: Sprite2D = %SpinnerSprite
+@onready var angle_sprite: Sprite2D = %AngleSprite
 
 
 func _ready():
@@ -34,8 +34,8 @@ func _process(_delta):
 func hit_body(body):
 	if body.is_in_group("balls"):
 		body = body as RigidBody2D
-		var force_direction: Vector2 = Vector2(cos(angle), sin(angle))  # Calculate force direction from angle
-		var force: Vector2           = force_direction * -3000 * speed
+		var force_direction: Vector2 = Vector2(cos(angle), sin(angle))
+		var force: Vector2 = force_direction * -3000 * speed
 		print("Force: ", force)
 		print("Angle: ", angle)
 		print("force_direction: ", force_direction)

@@ -39,6 +39,7 @@ func quick_spawn(count: int):
 func capture(value: int) -> void:
 	quick_spawn(value)
 
+
 func _on_capture_ball_captured():
 	capture(1)
 

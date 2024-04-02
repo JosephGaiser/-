@@ -1,34 +1,34 @@
 [gd_scene load_steps=15 format=3 uid="uid://dfw6wqw7gqp1a"]
 
-[ext_resource type="Script" path="res://scene/main.gd" id="1_21x2s"]
-[ext_resource type="PackedScene" uid="uid://hnvyunxvbv1o" path="res://scene/ball.tscn" id="1_sygm0"]
-[ext_resource type="PackedScene" uid="uid://b3c3y7cko4pgf" path="res://scene/peg.tscn" id="2_bck6a"]
-[ext_resource type="PackedScene" uid="uid://bs27aobfwpcds" path="res://scene/stage.tscn" id="3_ewtbe"]
-[ext_resource type="Script" path="res://scene/playfield.gd" id="3_i13m1"]
-[ext_resource type="PackedScene" uid="uid://dqtw3x8oxhcdx" path="res://scene/cup.tscn" id="3_mgn8n"]
-[ext_resource type="Script" path="res://scene/playfield_ui.gd" id="4_t72f6"]
-[ext_resource type="Script" path="res://scene/display_panel.gd" id="5_d128a"]
-[ext_resource type="PackedScene" uid="uid://ctjx83t6p3aw7" path="res://scene/out_of_bounds.tscn" id="6_5atrc"]
-[ext_resource type="AudioStream" uid="uid://q4i4hlqptjd1" path="res://addons/kenney music jingles/Hit jingles/jingles_hit_4.ogg" id="6_o5bsv"]
-[ext_resource type="PackedScene" uid="uid://yu0xhyysih47" path="res://scene/lever.tscn" id="6_vnb56"]
-[ext_resource type="AudioStream" uid="uid://cqhstnlnu4frc" path="res://addons/kenney music jingles/Hit jingles/jingles_hit_0.ogg" id="6_vsyig"]
-[ext_resource type="PackedScene" uid="uid://ciffvs6f7r7b6" path="res://scene/ball_return.tscn" id="8_84y76"]
-[ext_resource type="AudioStream" uid="uid://b7xuh4vuv212x" path="res://addons/kenney music jingles/Hit jingles/jingles_hit_8.ogg" id="9_ye5if"]
+[ext_resource type="Script" path="res://scene/pachinko.gd" id="1_q5b7l"]
+[ext_resource type="PackedScene" uid="uid://hnvyunxvbv1o" path="res://scene/ball.tscn" id="2_jkr4v"]
+[ext_resource type="Script" path="res://scene/playfield.gd" id="3_hfok1"]
+[ext_resource type="Script" path="res://scene/playfield_ui.gd" id="4_eymai"]
+[ext_resource type="Script" path="res://scene/display_panel.gd" id="5_wyosh"]
+[ext_resource type="PackedScene" uid="uid://b3c3y7cko4pgf" path="res://scene/peg.tscn" id="6_uvr82"]
+[ext_resource type="PackedScene" uid="uid://bs27aobfwpcds" path="res://scene/stage.tscn" id="7_fvofa"]
+[ext_resource type="AudioStream" uid="uid://cqhstnlnu4frc" path="res://addons/kenney music jingles/Hit jingles/jingles_hit_0.ogg" id="8_mm55h"]
+[ext_resource type="AudioStream" uid="uid://q4i4hlqptjd1" path="res://addons/kenney music jingles/Hit jingles/jingles_hit_4.ogg" id="9_u0dp6"]
+[ext_resource type="PackedScene" uid="uid://dqtw3x8oxhcdx" path="res://scene/cup.tscn" id="10_8cfso"]
+[ext_resource type="PackedScene" uid="uid://ctjx83t6p3aw7" path="res://scene/out_of_bounds.tscn" id="11_lukya"]
+[ext_resource type="AudioStream" uid="uid://b7xuh4vuv212x" path="res://addons/kenney music jingles/Hit jingles/jingles_hit_8.ogg" id="12_1rky0"]
+[ext_resource type="PackedScene" uid="uid://yu0xhyysih47" path="res://scene/lever.tscn" id="13_6yej0"]
+[ext_resource type="PackedScene" uid="uid://ciffvs6f7r7b6" path="res://scene/ball_return.tscn" id="14_i2v4r"]
 
-[node name="main" type="Node2D"]
-script = ExtResource("1_21x2s")
-ball_scene = ExtResource("1_sygm0")
+[node name="Pachinko" type="Node2D"]
+script = ExtResource("1_q5b7l")
+ball_scene = ExtResource("2_jkr4v")
 
 [node name="Playfield" type="Node2D" parent="."]
 unique_name_in_owner = true
-script = ExtResource("3_i13m1")
+script = ExtResource("3_hfok1")
 
 [node name="PlayfieldUI" type="Control" parent="Playfield"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("4_t72f6")
+script = ExtResource("4_eymai")
 
 [node name="Background" type="ColorRect" parent="Playfield/PlayfieldUI"]
 layout_mode = 0
@@ -45,7 +45,7 @@ offset_top = 240.0
 offset_right = 776.0
 offset_bottom = 280.0
 scale = Vector2(1.5, 1.5)
-script = ExtResource("5_d128a")
+script = ExtResource("5_wyosh")
 spin_duration = 1.2
 
 [node name="Label1" type="Label" parent="Playfield/PlayfieldUI/Slots"]
@@ -94,122 +94,122 @@ show_percentage = false
 
 [node name="Pins" type="Node2D" parent="Playfield"]
 
-[node name="Pin" parent="Playfield/Pins" instance=ExtResource("2_bck6a")]
+[node name="Pin" parent="Playfield/Pins" instance=ExtResource("6_uvr82")]
 position = Vector2(944, 496)
 
-[node name="Pin2" parent="Playfield/Pins" instance=ExtResource("2_bck6a")]
+[node name="Pin2" parent="Playfield/Pins" instance=ExtResource("6_uvr82")]
 position = Vector2(880, 496)
 
-[node name="Pin3" parent="Playfield/Pins" instance=ExtResource("2_bck6a")]
+[node name="Pin3" parent="Playfield/Pins" instance=ExtResource("6_uvr82")]
 position = Vector2(816, 496)
 
-[node name="Pin4" parent="Playfield/Pins" instance=ExtResource("2_bck6a")]
+[node name="Pin4" parent="Playfield/Pins" instance=ExtResource("6_uvr82")]
 position = Vector2(752, 496)
 
-[node name="Pin5" parent="Playfield/Pins" instance=ExtResource("2_bck6a")]
+[node name="Pin5" parent="Playfield/Pins" instance=ExtResource("6_uvr82")]
 position = Vector2(688, 496)
 
-[node name="Pin6" parent="Playfield/Pins" instance=ExtResource("2_bck6a")]
+[node name="Pin6" parent="Playfield/Pins" instance=ExtResource("6_uvr82")]
 position = Vector2(976, 560)
 
-[node name="Pin7" parent="Playfield/Pins" instance=ExtResource("2_bck6a")]
+[node name="Pin7" parent="Playfield/Pins" instance=ExtResource("6_uvr82")]
 position = Vector2(912, 560)
 
-[node name="Pin8" parent="Playfield/Pins" instance=ExtResource("2_bck6a")]
+[node name="Pin8" parent="Playfield/Pins" instance=ExtResource("6_uvr82")]
 position = Vector2(848, 560)
 
-[node name="Pin9" parent="Playfield/Pins" instance=ExtResource("2_bck6a")]
+[node name="Pin9" parent="Playfield/Pins" instance=ExtResource("6_uvr82")]
 position = Vector2(784, 560)
 
-[node name="Pin10" parent="Playfield/Pins" instance=ExtResource("2_bck6a")]
+[node name="Pin10" parent="Playfield/Pins" instance=ExtResource("6_uvr82")]
 position = Vector2(720, 560)
 
-[node name="Pin11" parent="Playfield/Pins" instance=ExtResource("2_bck6a")]
+[node name="Pin11" parent="Playfield/Pins" instance=ExtResource("6_uvr82")]
 position = Vector2(944, 624)
 
-[node name="Pin12" parent="Playfield/Pins" instance=ExtResource("2_bck6a")]
+[node name="Pin12" parent="Playfield/Pins" instance=ExtResource("6_uvr82")]
 position = Vector2(880, 624)
 
-[node name="Pin13" parent="Playfield/Pins" instance=ExtResource("2_bck6a")]
+[node name="Pin13" parent="Playfield/Pins" instance=ExtResource("6_uvr82")]
 position = Vector2(816, 624)
 
-[node name="Pin14" parent="Playfield/Pins" instance=ExtResource("2_bck6a")]
+[node name="Pin14" parent="Playfield/Pins" instance=ExtResource("6_uvr82")]
 position = Vector2(752, 624)
 
-[node name="Pin15" parent="Playfield/Pins" instance=ExtResource("2_bck6a")]
+[node name="Pin15" parent="Playfield/Pins" instance=ExtResource("6_uvr82")]
 position = Vector2(688, 624)
 
-[node name="Pin16" parent="Playfield/Pins" instance=ExtResource("2_bck6a")]
+[node name="Pin16" parent="Playfield/Pins" instance=ExtResource("6_uvr82")]
 position = Vector2(976, 688)
 
-[node name="Pin17" parent="Playfield/Pins" instance=ExtResource("2_bck6a")]
+[node name="Pin17" parent="Playfield/Pins" instance=ExtResource("6_uvr82")]
 position = Vector2(912, 688)
 
-[node name="Pin18" parent="Playfield/Pins" instance=ExtResource("2_bck6a")]
+[node name="Pin18" parent="Playfield/Pins" instance=ExtResource("6_uvr82")]
 position = Vector2(848, 688)
 
-[node name="Pin19" parent="Playfield/Pins" instance=ExtResource("2_bck6a")]
+[node name="Pin19" parent="Playfield/Pins" instance=ExtResource("6_uvr82")]
 position = Vector2(784, 688)
 
-[node name="Pin20" parent="Playfield/Pins" instance=ExtResource("2_bck6a")]
+[node name="Pin20" parent="Playfield/Pins" instance=ExtResource("6_uvr82")]
 position = Vector2(720, 688)
 
-[node name="Pin21" parent="Playfield/Pins" instance=ExtResource("2_bck6a")]
+[node name="Pin21" parent="Playfield/Pins" instance=ExtResource("6_uvr82")]
 position = Vector2(624, 496)
 
-[node name="Pin22" parent="Playfield/Pins" instance=ExtResource("2_bck6a")]
+[node name="Pin22" parent="Playfield/Pins" instance=ExtResource("6_uvr82")]
 position = Vector2(656, 560)
 
-[node name="Pin23" parent="Playfield/Pins" instance=ExtResource("2_bck6a")]
+[node name="Pin23" parent="Playfield/Pins" instance=ExtResource("6_uvr82")]
 position = Vector2(624, 624)
 
-[node name="Pin24" parent="Playfield/Pins" instance=ExtResource("2_bck6a")]
+[node name="Pin24" parent="Playfield/Pins" instance=ExtResource("6_uvr82")]
 position = Vector2(656, 688)
 
-[node name="Pin25" parent="Playfield/Pins" instance=ExtResource("2_bck6a")]
+[node name="Pin25" parent="Playfield/Pins" instance=ExtResource("6_uvr82")]
 position = Vector2(560, 496)
 
-[node name="Pin26" parent="Playfield/Pins" instance=ExtResource("2_bck6a")]
+[node name="Pin26" parent="Playfield/Pins" instance=ExtResource("6_uvr82")]
 position = Vector2(592, 560)
 
-[node name="Pin27" parent="Playfield/Pins" instance=ExtResource("2_bck6a")]
+[node name="Pin27" parent="Playfield/Pins" instance=ExtResource("6_uvr82")]
 position = Vector2(560, 624)
 
-[node name="Pin28" parent="Playfield/Pins" instance=ExtResource("2_bck6a")]
+[node name="Pin28" parent="Playfield/Pins" instance=ExtResource("6_uvr82")]
 position = Vector2(592, 688)
 
 [node name="Walls" type="Node2D" parent="Playfield"]
 position = Vector2(-64, 96)
 
-[node name="StageRight" parent="Playfield/Walls" node_paths=PackedStringArray("collision_polygon_2d") instance=ExtResource("3_ewtbe")]
+[node name="StageRight" parent="Playfield/Walls" node_paths=PackedStringArray("collision_polygon_2d") instance=ExtResource("7_fvofa")]
 position = Vector2(-40, 0)
 collision_polygon_2d = NodePath("CollisionPolygon2D")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Playfield/Walls/StageRight"]
 polygon = PackedVector2Array(1144, 712, 1144, 264, 1144, 248, 1136, 240, 1120, 240, 1120, 256, 1128, 264, 1128, 704, 1088, 744, 1024, 768, 1024, 784, 1096, 760)
 
-[node name="StageTop" parent="Playfield/Walls" node_paths=PackedStringArray("collision_polygon_2d") instance=ExtResource("3_ewtbe")]
+[node name="StageTop" parent="Playfield/Walls" node_paths=PackedStringArray("collision_polygon_2d") instance=ExtResource("7_fvofa")]
 position = Vector2(24, 0)
 collision_polygon_2d = NodePath("CollisionPolygon2D2")
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Playfield/Walls/StageTop"]
 polygon = PackedVector2Array(1144, 688, 1144, 224, 1144, 200, 1136, 184, 1112, 176, 1088, 176, 592, 176, 560, 184, 552, 208, 552, 704, 600, 752, 664, 784, 664, 768, 608, 736, 568, 696, 568, 254.713, 576, 208, 615.663, 192, 1064, 192, 1088, 200, 1104, 208, 1112, 224, 1112, 256, 1112, 704)
 
-[node name="Bottom" parent="Playfield/Walls" node_paths=PackedStringArray("collision_polygon_2d") instance=ExtResource("3_ewtbe")]
+[node name="Bottom" parent="Playfield/Walls" node_paths=PackedStringArray("collision_polygon_2d") instance=ExtResource("7_fvofa")]
 position = Vector2(-344, 752)
 collision_polygon_2d = NodePath("CollisionPolygon2D")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Playfield/Walls/Bottom"]
 polygon = PackedVector2Array(1032, 80, 1328, 80, 1328, 16, 1312, 24, 1312, 64, 1048, 64, 1048, 24, 1032, 16)
 
-[node name="Feed" parent="Playfield/Walls" node_paths=PackedStringArray("collision_polygon_2d") instance=ExtResource("3_ewtbe")]
+[node name="Feed" parent="Playfield/Walls" node_paths=PackedStringArray("collision_polygon_2d") instance=ExtResource("7_fvofa")]
 position = Vector2(24, 608)
 collision_polygon_2d = NodePath("CollisionPolygon2D")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Playfield/Walls/Feed"]
 polygon = PackedVector2Array(1344, 192, 1296, 192, 1216, 208, 1136, 216, 1104, 216, 1064, 216, 1064, 200, 1064, 120, 1080, 104, 1080, 144, 1088.46, 173.605, 1096, 200, 1112, 200, 1144, 200, 1192, 192, 1248, 176, 1296, 160, 1344, 144, 1408, 120, 1440, 104, 1456, 88, 1472, 88, 1472, 192)
 
-[node name="Inventory" parent="Playfield/Walls" node_paths=PackedStringArray("collision_polygon_2d") instance=ExtResource("3_ewtbe")]
+[node name="Inventory" parent="Playfield/Walls" node_paths=PackedStringArray("collision_polygon_2d") instance=ExtResource("7_fvofa")]
 position = Vector2(88, -6)
 collision_polygon_2d = NodePath("CollisionPolygon2D")
 
@@ -220,27 +220,27 @@ polygon = PackedVector2Array(1408, 704, 1408, 72, 1384, 40, 1128, 40, 1104, 72, 
 
 [node name="capture_sound" type="AudioStreamPlayer2D" parent="Playfield/Cups"]
 position = Vector2(768, 792)
-stream = ExtResource("6_vsyig")
+stream = ExtResource("8_mm55h")
 
 [node name="crit_capture_sound" type="AudioStreamPlayer2D" parent="Playfield/Cups"]
 position = Vector2(768, 792)
-stream = ExtResource("6_o5bsv")
+stream = ExtResource("9_u0dp6")
 
-[node name="crit" parent="Playfield/Cups" node_paths=PackedStringArray("capture") instance=ExtResource("3_mgn8n")]
+[node name="crit" parent="Playfield/Cups" node_paths=PackedStringArray("capture") instance=ExtResource("10_8cfso")]
 unique_name_in_owner = true
 position = Vector2(763, 792)
 capture = NodePath("../crit_capture_sound")
 is_crit = true
 
-[node name="capture" parent="Playfield/Cups" node_paths=PackedStringArray("capture") instance=ExtResource("3_mgn8n")]
+[node name="capture" parent="Playfield/Cups" node_paths=PackedStringArray("capture") instance=ExtResource("10_8cfso")]
 position = Vector2(888, 760)
 capture = NodePath("../capture_sound")
 
-[node name="capture2" parent="Playfield/Cups" node_paths=PackedStringArray("capture") instance=ExtResource("3_mgn8n")]
+[node name="capture2" parent="Playfield/Cups" node_paths=PackedStringArray("capture") instance=ExtResource("10_8cfso")]
 position = Vector2(656, 760)
 capture = NodePath("../capture_sound")
 
-[node name="OutOfBounds" parent="Playfield" node_paths=PackedStringArray("destory_sound") instance=ExtResource("6_5atrc")]
+[node name="OutOfBounds" parent="Playfield" node_paths=PackedStringArray("destory_sound") instance=ExtResource("11_lukya")]
 position = Vector2(773, 911.63)
 scale = Vector2(2.765, 0.1)
 destory_sound = NodePath("Destroy")
@@ -248,12 +248,12 @@ destory_sound = NodePath("Destroy")
 [node name="Destroy" type="AudioStreamPlayer2D" parent="Playfield/OutOfBounds"]
 position = Vector2(-4.70162, 3.7002)
 scale = Vector2(0.25, 1)
-stream = ExtResource("9_ye5if")
+stream = ExtResource("12_1rky0")
 
-[node name="Lever" parent="Playfield" instance=ExtResource("6_vnb56")]
+[node name="Lever" parent="Playfield" instance=ExtResource("13_6yej0")]
 position = Vector2(1040, 912)
 
-[node name="BallReturn" parent="Playfield" instance=ExtResource("8_84y76")]
+[node name="BallReturn" parent="Playfield" instance=ExtResource("14_i2v4r")]
 unique_name_in_owner = true
 position = Vector2(603, 104)
 inventory = 5
