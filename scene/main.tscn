@@ -2,15 +2,15 @@
 
 [ext_resource type="Script" path="res://scene/main.gd" id="1_21x2s"]
 [ext_resource type="PackedScene" uid="uid://hnvyunxvbv1o" path="res://scene/ball.tscn" id="1_sygm0"]
-[ext_resource type="PackedScene" uid="uid://b3c3y7cko4pgf" path="res://scene/pin.tscn" id="2_bck6a"]
+[ext_resource type="PackedScene" uid="uid://b3c3y7cko4pgf" path="res://scene/peg.tscn" id="2_bck6a"]
 [ext_resource type="PackedScene" uid="uid://bs27aobfwpcds" path="res://scene/stage.tscn" id="3_ewtbe"]
-[ext_resource type="Script" path="res://scene/Playfield.gd" id="3_i13m1"]
+[ext_resource type="Script" path="res://scene/playfield.gd" id="3_i13m1"]
 [ext_resource type="PackedScene" uid="uid://dqtw3x8oxhcdx" path="res://scene/cup.tscn" id="3_mgn8n"]
-[ext_resource type="Script" path="res://scene/Control.gd" id="4_t72f6"]
-[ext_resource type="Script" path="res://scene/DisplayPanel.gd" id="5_d128a"]
+[ext_resource type="Script" path="res://scene/playfield_ui.gd" id="4_t72f6"]
+[ext_resource type="Script" path="res://scene/display_panel.gd" id="5_d128a"]
 [ext_resource type="PackedScene" uid="uid://ctjx83t6p3aw7" path="res://scene/out_of_bounds.tscn" id="6_5atrc"]
 [ext_resource type="AudioStream" uid="uid://q4i4hlqptjd1" path="res://addons/kenney music jingles/Hit jingles/jingles_hit_4.ogg" id="6_o5bsv"]
-[ext_resource type="PackedScene" uid="uid://yu0xhyysih47" path="res://scene/Lever.tscn" id="6_vnb56"]
+[ext_resource type="PackedScene" uid="uid://yu0xhyysih47" path="res://scene/lever.tscn" id="6_vnb56"]
 [ext_resource type="AudioStream" uid="uid://cqhstnlnu4frc" path="res://addons/kenney music jingles/Hit jingles/jingles_hit_0.ogg" id="6_vsyig"]
 [ext_resource type="PackedScene" uid="uid://ciffvs6f7r7b6" path="res://scene/ball_return.tscn" id="8_84y76"]
 [ext_resource type="AudioStream" uid="uid://b7xuh4vuv212x" path="res://addons/kenney music jingles/Hit jingles/jingles_hit_8.ogg" id="9_ye5if"]
@@ -23,14 +23,14 @@ ball_scene = ExtResource("1_sygm0")
 unique_name_in_owner = true
 script = ExtResource("3_i13m1")
 
-[node name="UI" type="Control" parent="Playfield"]
+[node name="PlayfieldUI" type="Control" parent="Playfield"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("4_t72f6")
 
-[node name="Background" type="ColorRect" parent="Playfield/UI"]
+[node name="Background" type="ColorRect" parent="Playfield/PlayfieldUI"]
 layout_mode = 0
 offset_left = -8.0
 offset_top = -8.0
@@ -38,7 +38,7 @@ offset_right = 1912.0
 offset_bottom = 1080.0
 color = Color(0.00392157, 0, 0.027451, 1)
 
-[node name="Slots" type="Control" parent="Playfield/UI"]
+[node name="Slots" type="Control" parent="Playfield/PlayfieldUI"]
 anchors_preset = 0
 offset_left = 736.0
 offset_top = 240.0
@@ -48,14 +48,14 @@ scale = Vector2(1.5, 1.5)
 script = ExtResource("5_d128a")
 spin_duration = 1.2
 
-[node name="Label1" type="Label" parent="Playfield/UI/Slots"]
+[node name="Label1" type="Label" parent="Playfield/PlayfieldUI/Slots"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "0"
 
-[node name="Label2" type="Label" parent="Playfield/UI/Slots"]
+[node name="Label2" type="Label" parent="Playfield/PlayfieldUI/Slots"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 40.0
@@ -63,7 +63,7 @@ offset_right = 80.0
 offset_bottom = 23.0
 text = "0"
 
-[node name="Label3" type="Label" parent="Playfield/UI/Slots"]
+[node name="Label3" type="Label" parent="Playfield/PlayfieldUI/Slots"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 80.0
@@ -71,7 +71,7 @@ offset_right = 120.0
 offset_bottom = 23.0
 text = "0"
 
-[node name="Inventory" type="Label" parent="Playfield/UI"]
+[node name="Inventory" type="Label" parent="Playfield/PlayfieldUI"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 1296.0
@@ -81,7 +81,7 @@ offset_bottom = 167.0
 scale = Vector2(2.5, 2.5)
 text = "0000"
 
-[node name="stage_health" type="ProgressBar" parent="Playfield/UI"]
+[node name="stage_health" type="ProgressBar" parent="Playfield/PlayfieldUI"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 344.0
@@ -258,10 +258,10 @@ unique_name_in_owner = true
 position = Vector2(603, 104)
 inventory = 5
 
-[connection signal="jackpot_hit" from="Playfield/UI/Slots" to="Playfield/UI" method="_on_slots_jackpot_hit"]
-[connection signal="jackpot_hit" from="Playfield/UI/Slots" to="Playfield/BallReturn" method="_on_slots_jackpot_hit"]
+[connection signal="jackpot_hit" from="Playfield/PlayfieldUI/Slots" to="Playfield/PlayfieldUI" method="_on_slots_jackpot_hit"]
+[connection signal="jackpot_hit" from="Playfield/PlayfieldUI/Slots" to="Playfield/BallReturn" method="_on_slots_jackpot_hit"]
 [connection signal="ball_captured" from="Playfield/Cups/crit" to="Playfield/BallReturn" method="_on_crit_ball_captured"]
 [connection signal="crit_captured" from="Playfield/Cups/crit" to="Playfield" method="_on_crit_crit_captured"]
-[connection signal="crit_captured" from="Playfield/Cups/crit" to="Playfield/UI/Slots" method="_on_crit_crit_captured"]
+[connection signal="crit_captured" from="Playfield/Cups/crit" to="Playfield/PlayfieldUI/Slots" method="_on_crit_crit_captured"]
 [connection signal="ball_captured" from="Playfield/Cups/capture" to="Playfield/BallReturn" method="_on_capture_ball_captured"]
 [connection signal="ball_captured" from="Playfield/Cups/capture2" to="Playfield/BallReturn" method="_on_capture_2_ball_captured"]
