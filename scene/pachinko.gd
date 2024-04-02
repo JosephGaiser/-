@@ -2,6 +2,7 @@ class_name Pachinko
 extends Node2D
 
 @export var ball_scene: PackedScene
+@export var launcher: Launcher
 
 @onready var mouse: Mouse = %Mouse
 

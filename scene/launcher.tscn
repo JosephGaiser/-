@@ -7,7 +7,7 @@
 [node name="Launcher" type="Node2D"]
 script = ExtResource("1_ju7v3")
 
-[node name="Speed Slider" type="HSlider" parent="."]
+[node name="SpeedSlider" type="HSlider" parent="."]
 unique_name_in_owner = true
 offset_left = -72.0
 offset_top = 56.0
@@ -16,7 +16,7 @@ offset_bottom = 88.0
 max_value = 1.0
 step = 0.01
 
-[node name="Angle Slider" type="HSlider" parent="."]
+[node name="AngleSlider" type="HSlider" parent="."]
 unique_name_in_owner = true
 visible = false
 offset_left = -72.0
@@ -39,12 +39,29 @@ unique_name_in_owner = true
 texture_filter = 1
 texture = ExtResource("2_p8o1y")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="LaunchLocation" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-32, 0)
+
+[node name="BallInLauncher" type="Area2D" parent="LaunchLocation"]
+unique_name_in_owner = true
+position = Vector2(32, 0)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LaunchLocation/BallInLauncher"]
+polygon = PackedVector2Array(-64, -24, 0, -24, 0, 24, -64, 24)
+
+[node name="BallInFeed" type="Area2D" parent="."]
 unique_name_in_owner = true
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BallInFeed"]
+position = Vector2(88, 0)
+polygon = PackedVector2Array(-64, -24, -40, -24, -40, 24, -64, 24)
 
-[connection signal="value_changed" from="Speed Slider" to="." method="_on_speed_slider_value_changed"]
-[connection signal="value_changed" from="Angle Slider" to="." method="_on_angle_slider_value_changed"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[node name="BlockFeed" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BlockFeed"]
+position = Vector2(16, 0)
+polygon = PackedVector2Array(-16, -24, -16, 24, 8, 24, 8, -24)
+
+[connection signal="value_changed" from="SpeedSlider" to="." method="_on_speed_slider_value_changed"]
+[connection signal="value_changed" from="AngleSlider" to="." method="_on_angle_slider_value_changed"]
