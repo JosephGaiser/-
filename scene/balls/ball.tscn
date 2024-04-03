@@ -1,0 +1,50 @@
+[gd_scene load_steps=11 format=3 uid="uid://hnvyunxvbv1o"]
+
+[ext_resource type="Script" path="res://scene/balls/ball.gd" id="1_02aqe"]
+[ext_resource type="Texture2D" uid="uid://dm0ypbqtikxti" path="res://assets/Generic/Vector/generic_button_circle.svg" id="1_jamuf"]
+[ext_resource type="AudioStream" uid="uid://cxs6vdl66q3cs" path="res://addons/kenney impact sounds/impact_soft_heavy_000.ogg" id="2_dyuyy"]
+[ext_resource type="AudioStream" uid="uid://dmi777ta57lcs" path="res://addons/kenney impact sounds/impact_wood_light_000.ogg" id="3_dvtsq"]
+[ext_resource type="AudioStream" uid="uid://cq4i1fbqidupg" path="res://addons/kenney impact sounds/impact_bell_heavy_003.ogg" id="4_pt86a"]
+[ext_resource type="AudioStream" uid="uid://b7im1r8b24kyf" path="res://addons/kenney impact sounds/impact_generic_light_002.ogg" id="5_ealvf"]
+[ext_resource type="PackedScene" uid="uid://cbr51moksl1vy" path="res://scene/particles/captured_effect.tscn" id="6_k07os"]
+[ext_resource type="PackedScene" uid="uid://bu8e3i2x07gh4" path="res://scene/particles/lost_effect.tscn" id="7_dlivd"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_da7qh"]
+friction = 0.1
+bounce = 0.8
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ullqy"]
+radius = 25.02
+
+[node name="Ball" type="RigidBody2D" groups=["balls"]]
+physics_material_override = SubResource("PhysicsMaterial_da7qh")
+max_contacts_reported = 5
+contact_monitor = true
+script = ExtResource("1_02aqe")
+collision_sound = ExtResource("2_dyuyy")
+capture_sound = ExtResource("3_dvtsq")
+crit_capture_sound = ExtResource("4_pt86a")
+lost_sound = ExtResource("5_ealvf")
+collision_threshold = 200.0
+captured_effect = ExtResource("6_k07os")
+lost_effect = ExtResource("7_dlivd")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+scale = Vector2(125, 125)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_ullqy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_jamuf")
+
+[node name="captured_effect" parent="." instance=ExtResource("6_k07os")]
+unique_name_in_owner = true
+
+[node name="lost_effect" parent="." instance=ExtResource("7_dlivd")]
+unique_name_in_owner = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

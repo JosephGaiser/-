@@ -9,11 +9,9 @@ radius = 22.8571
 scale = Vector2(0.35, 0.35)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(1, 1)
 shape = SubResource("CircleShape2D_gtg1g")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 2)
-scale = Vector2(1, 1)
 texture = ExtResource("1_o7flw")
 offset = Vector2(0.07, -1.96)

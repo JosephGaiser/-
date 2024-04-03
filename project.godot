@@ -14,7 +14,7 @@ config/name="パチンコ"
 run/main_scene="res://scene/pachinko.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/show_image=false
-config/icon="res://icon.svg"
+config/icon="res://assets/Steam Deck/Double/steamdeck_button_x_outline.png"
 
 [autoload]
 

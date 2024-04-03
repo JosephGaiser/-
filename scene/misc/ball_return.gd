@@ -45,16 +45,16 @@ func capture(value: int) -> void:
 
 
 func _on_capture_ball_captured():
-	capture(1)
-
-
-func _on_crit_ball_captured():
-	capture(10)
+	capture(15)
 
 
 func _on_capture_2_ball_captured():
-	capture(2)
+	capture(15)
 
 
 func _on_slots_jackpot_hit():
 	capture(100)
+
+
+func _on_crit_crit_captured():
+	capture(30)

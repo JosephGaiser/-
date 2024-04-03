@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://yu0xhyysih47"]
 
-[ext_resource type="Script" path="res://scene/launcher.gd" id="1_ju7v3"]
+[ext_resource type="Script" path="res://scene/misc/launcher.gd" id="1_ju7v3"]
 [ext_resource type="Texture2D" uid="uid://xgsp5gn0g7gs" path="res://assets/Flairs/Vector/flair_arrow_long.svg" id="2_gadot"]
 [ext_resource type="Texture2D" uid="uid://dtc80m7g8j6bm" path="res://assets/Steam Deck/Vector/steamdeck_button_x_outline.svg" id="2_p8o1y"]
 

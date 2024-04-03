@@ -30,8 +30,11 @@ texture = ExtResource("2_j105b")
 polygon = PackedVector2Array(3, -4, 66, -4, 69, 0, 66, 4, 3, 4, 0, 0)
 
 [node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="."]
+unique_name_in_owner = true
 rotation = -2.33001
 node_a = NodePath("../StaticBody2D")
 node_b = NodePath("../RigidBody2D")
 disable_collision = false
 length = 1.0
+stiffness = 50.0
+damping = 16.0
