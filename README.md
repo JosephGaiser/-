@@ -47,5 +47,4 @@ A simple proof of concept for a pachinko themed game implemented in godot 4
     * Jackpots will give the player a lot of balls
 
 ### SCREENSHOTS
-
-![image](https://github.com/JosephGaiser/pachinko/assets/35605126/25fe4976-17c1-44b5-8cb2-bf68d771ff3c)
+![image](https://github.com/JosephGaiser/pachinko/assets/35605126/0f427132-305b-4fcc-b85a-0170bbffa984)
