@@ -10,9 +10,9 @@ script = ExtResource("1_ju7v3")
 [node name="SpeedSlider" type="HSlider" parent="."]
 unique_name_in_owner = true
 offset_left = -72.0
-offset_top = 56.0
+offset_top = 80.0
 offset_right = 72.0
-offset_bottom = 88.0
+offset_bottom = 112.0
 max_value = 1.0
 step = 0.01
 
@@ -41,26 +41,27 @@ texture = ExtResource("2_p8o1y")
 
 [node name="LaunchLocation" type="Node2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-32, 0)
+position = Vector2(0, -40)
 
 [node name="BallInLauncher" type="Area2D" parent="LaunchLocation"]
 unique_name_in_owner = true
-position = Vector2(32, 0)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LaunchLocation/BallInLauncher"]
-polygon = PackedVector2Array(-64, -24, 0, -24, 0, 24, -64, 24)
+position = Vector2(40, -8)
+polygon = PackedVector2Array(-64, -272, -16, -272, -16, 24, -64, 24)
 
 [node name="BallInFeed" type="Area2D" parent="."]
 unique_name_in_owner = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BallInFeed"]
-position = Vector2(88, 0)
-polygon = PackedVector2Array(-64, -24, -40, -24, -40, 24, -64, 24)
+position = Vector2(40, 32)
+polygon = PackedVector2Array(-64, -24, -16, -24, -16, 16, -64, 16)
 
 [node name="BlockFeed" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BlockFeed"]
-position = Vector2(16, 0)
+position = Vector2(0, -4)
+rotation = 1.57079
 polygon = PackedVector2Array(-16, -24, -16, 24, 8, 24, 8, -24)
 
 [connection signal="value_changed" from="SpeedSlider" to="." method="_on_speed_slider_value_changed"]

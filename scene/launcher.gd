@@ -22,6 +22,7 @@ var fire_rate_timer: Timer = Timer.new()
 @onready var ball_in_feed = %BallInFeed
 @onready var ball_in_launcher = %BallInLauncher
 
+
 func _ready():
 	if counter_clockwise:
 		direction = -1 # Counter-clockwise
@@ -41,9 +42,8 @@ func launch(body: RigidBody2D, load_ball: bool) -> void:
 	if load_ball:
 		body.position = launch_location.global_position
 		body.linear_velocity = Vector2(0, 0)
-	var force_direction: Vector2 = Vector2(cos(angle), sin(angle))
-	var force: Vector2           = force_direction * -strenth * speed
-	print("apply_central_impulse: ", force)
+		body.set_inertia(0.0)
+	var force: Vector2 = Vector2(0, 1) * strenth * speed
 	body.apply_central_impulse(force)
 
 

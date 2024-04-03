@@ -43,7 +43,6 @@ scale_max = 0.4
 scale_curve = SubResource("CurveTexture_ume87")
 
 [node name="Ball" type="RigidBody2D" groups=["balls"]]
-mass = 5.0
 physics_material_override = SubResource("PhysicsMaterial_da7qh")
 max_contacts_reported = 5
 contact_monitor = true
